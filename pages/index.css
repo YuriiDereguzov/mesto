@@ -11,8 +11,7 @@
 @import url(../blocks/info-item/info-item.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
-@import url();
-@import url();
+@import url(../blocks/footer/footer.css);
 
 /*Структура для элементов*/
 @import url(../blocks/header/__line/header__line.css);
@@ -26,10 +25,6 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__name/card__name.css);
-@import url();
-@import url();
 
 /*Структура для модификаторов*/
-@import url();
-@import url();
 @import url();
