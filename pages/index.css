@@ -1,0 +1,19 @@
+@import url(../vendor/normalize.css);
+/*Структура для блоков*/
+@import url(../blocks/page/page.css);
+@import url(../blocks/header/header.css);
+@import url();
+@import url();
+@import url();
+
+/*Структура для элементов*/
+@import url(../blocks/header/__line/header__line.css);
+@import url(//blocks/header/__logo/header__logo.css);
+@import url();
+@import url();
+@import url();
+
+/*Структура для модификаторов*/
+@import url();
+@import url();
+@import url();
