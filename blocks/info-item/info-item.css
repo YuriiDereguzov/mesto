@@ -1,0 +1,7 @@
+.info-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    grid-row-gap: 16px;
+    grid-column-gap: 18px;
+}

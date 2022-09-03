@@ -1,14 +1,23 @@
+@import url(../vendor/fonts/fonts.css);
 @import url(../vendor/normalize.css);
+
 /*Структура для блоков*/
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
-@import url();
-@import url();
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile-info/profile-info.css);
+@import url(../blocks/avatar/avatar.css);
+@import url(../blocks/button/button.css);
+@import url(../blocks/info-item/info-item.css);
 @import url();
 
 /*Структура для элементов*/
 @import url(../blocks/header/__line/header__line.css);
 @import url(//blocks/header/__logo/header__logo.css);
+
+@import url(../blocks/info-item/__edit-button/info-item__edit-button.css);
+@import url(../blocks/info-item/__subtitle/info-item__subtitle.css);
+@import url(../blocks/info-item/__title/info-item__title.css);
 @import url();
 @import url();
 @import url();
