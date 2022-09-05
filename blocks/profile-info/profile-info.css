@@ -1,3 +1,15 @@
 .profile-info {
     display: flex;
 }
+
+@media screen and (max-width: 650px) {
+    .profile-info {
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile-info {
+        flex-direction: column;
+    }
+}

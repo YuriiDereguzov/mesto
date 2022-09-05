@@ -15,7 +15,7 @@
 
 /*Структура для элементов*/
 @import url(../blocks/header/__line/header__line.css);
-@import url(//blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__logo/header__logo.css);
 
 @import url(../blocks/info-item/__edit-button/info-item__edit-button.css);
 @import url(../blocks/info-item/__subtitle/info-item__subtitle.css);
