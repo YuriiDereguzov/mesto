@@ -22,7 +22,7 @@
                     <p class="info-item__subtitle">Исследователь океана</p>
                 </div>
             </div>
-            <button class="button">click</button>
+            <button class="button"></button>
     </section>
 
     <section class="cards">
@@ -71,5 +71,26 @@
     </section>
 
     <footer class="footer">&copy; 2020 Mesto Russia</footer>
+
+    <section class="overlay overlay_opened">
+        <div class="popup">
+            <h2 class="popup__title">Редактировать профиль</h2>
+
+            <div class="popup__data">
+                <input type="text" placeholder="Жак-Ив Кусто" class="popup__data-text">
+                <p class="popup__data-line"></p>
+            </div>
+            <div class="popup__data">
+                <input type="text" placeholder="Исследователь океана" class="popup__data-text">
+                <p class="popup__data-line"></p>
+            </div>
+
+            <button class="popup__button-save">Сохранить</button>
+        </div>
+        <button class="popup__close-button"></button>
+    </section>
+
+
+    <script src="main.js"></script>
 </body>
 </html>

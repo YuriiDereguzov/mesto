@@ -1,0 +1,17 @@
+.overlay_opened {
+    padding: 35px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 155px auto;
+    max-width: 430px;
+}
+
+@media screen and (max-width: 450px) {
+    .overlay_opened {
+        padding: 36px 19px;
+        margin: 86px auto;
+    }
+}
