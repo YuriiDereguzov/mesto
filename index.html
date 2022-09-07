@@ -30,64 +30,70 @@
             <img class="card__image" src="images/kirill-pershin-1.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Карачаевск</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
         <div class="card">
             <img class="card__image" src="images/kirill-pershin-2.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Гора Эльбрус</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
         <div class="card">
             <img class="card__image" src="images/kirill-pershin-3.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Домбай</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
         <div class="card">
             <img class="card__image" src="images/kirill-pershin-2.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Гора Эльбрус</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
         <div class="card">
             <img class="card__image" src="images/kirill-pershin-3.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Домбай</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
         <div class="card">
             <img class="card__image" src="images/kirill-pershin-1.jpg" alt="">
             <div class="card__content">
                 <div class="card__name">Карачаево-Черкесия</div>
-                <img class="card__like" src="images/Vector-card.svg" alt="Нравится">
+                <button  class="card__like"></button>
             </div>
         </div>
     </section>
 
     <footer class="footer">&copy; 2020 Mesto Russia</footer>
 
-    <section class="overlay overlay_opened">
+    <section class="overlay">
+
+
         <div class="popup">
-            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__container">
+                <h2 class="popup__title">Редактировать профиль</h2>
 
-            <div class="popup__data">
-                <input type="text" placeholder="Жак-Ив Кусто" class="popup__data-text">
-                <p class="popup__data-line"></p>
-            </div>
-            <div class="popup__data">
-                <input type="text" placeholder="Исследователь океана" class="popup__data-text">
-                <p class="popup__data-line"></p>
-            </div>
+                <div class="popup__data">
+                    <input type="text" placeholder="Жак-Ив Кусто" class="popup__data-name">
+                    <p class="popup__data-line"></p>
+                </div>
+                <div class="popup__data">
+                    <input type="text" placeholder="Исследователь океана" class="popup__data-job">
+                    <p class="popup__data-line"></p>
+                </div>
 
-            <button class="popup__button-save">Сохранить</button>
+                <button class="popup__button-save">Сохранить</button>
+            </form>
+            <button class="popup__close-button"></button>
         </div>
-        <button class="popup__close-button"></button>
+
+
     </section>
 
 

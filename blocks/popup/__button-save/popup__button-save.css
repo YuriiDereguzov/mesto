@@ -4,6 +4,11 @@
     min-width: 358px;
     min-height: 50px;
     margin: 18px 0 37px;
+    cursor: pointer;
+}
+
+.popup__button-save:hover {
+    opacity: 80%;
 }
 
 @media screen and (max-width: 450px) {

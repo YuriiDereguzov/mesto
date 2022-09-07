@@ -7,6 +7,11 @@
     min-height: 50px;
     margin: auto 0;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.button:hover {
+    opacity: 80%;
 }
 
 @media screen and (max-width: 650px) {
