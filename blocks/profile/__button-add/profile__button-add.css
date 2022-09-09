@@ -1,5 +1,5 @@
-.button {
-    background: url(../../images/Vector-addButton.svg);
+.profile__button-add {
+    background: url(../../../images/Vector-addButton.svg);
     background-repeat: no-repeat;
     background-position: center;
     border: 2px solid #FFFFFF;
@@ -8,14 +8,16 @@
     margin: auto 0;
     box-sizing: border-box;
     cursor: pointer;
+    padding: 0;
 }
 
-.button:hover {
-    opacity: 80%;
+.profile__button-add:hover {
+    opacity: 60%;
 }
 
 @media screen and (max-width: 650px) {
-    .button {
+    .profile__button-add {
         margin: 36px 19px;
+        background-size: 16px;
     }
 }

@@ -1,17 +1,9 @@
 .popup {
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 35px;
-    margin: auto;
-    max-width: 430px;
-    max-height: 330px;
-}
-
-@media screen and (max-width: 450px) {
-    .popup {
-        padding: 36px 19px;
-    }
+    background-color: rgba(0, 0, 0, .5);
 }

@@ -10,88 +10,83 @@
 <body class="page">
     <header class="header">
         <img class="header__logo" src="images/Vector-logo.svg" alt="Место Россия">
-        <div class="header__line"></div>
     </header>
 
-    <section class="profile">
-            <div class="profile-info">
-                <img class="avatar" src="images/image(1).png" alt="Жак-Ив Кусто">
-                <div class="info-item">
-                    <h1 class="info-item__title">Жак-Ив Кусто</h1>
-                    <button class="info-item__edit-button"></button>
-                    <p class="info-item__subtitle">Исследователь океана</p>
+    <main>
+        <section class="profile">
+                <div class="profile__info">
+                    <img class="profile__avatar" src="images/image(1).png" alt="Жак-Ив Кусто">
+                    <div class="profile__info-item">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
+                        <p class="profile__job">Исследователь океана</p>
+                    </div>
+                </div>
+                <button type="button" class="profile__button-add" aria-label="Добавить"></button>
+        </section>
+
+        <section class="cards">
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-1.jpg" alt="Старый Храм в горах">
+                <div class="card__content">
+                    <h2 class="card__name">Карачаевск</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
                 </div>
             </div>
-            <button class="button"></button>
-    </section>
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-2.jpg" alt="Гора в закате">
+                <div class="card__content">
+                    <h2 class="card__name">Гора Эльбрус</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-3.jpg" alt="Леса и снежные горы">
+                <div class="card__content">
+                    <h2 class="card__name">Домбай</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-2.jpg" alt="Гора в закате">
+                <div class="card__content">
+                    <h2 class="card__name">Гора Эльбрус</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-3.jpg" alt="Леса и снежные горы">
+                <div class="card__content">
+                    <h2 class="card__name">Домбай</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card__image" src="images/kirill-pershin-1.jpg" alt="Старый Храм в горах">
+                <div class="card__content">
+                    <h2 class="card__name">Карачаево-Черкесия</h2>
+                    <button type="submit" class="card__like" aria-label="Оценить"></button>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <section class="cards">
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-1.jpg" alt="Старый Храм в горах">
-            <div class="card__content">
-                <h2 class="card__name">Карачаевск</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-2.jpg" alt="Гора в закате">
-            <div class="card__content">
-                <h2 class="card__name">Гора Эльбрус</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-3.jpg" alt="Леса и снежные горы">
-            <div class="card__content">
-                <h2 class="card__name">Домбай</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-2.jpg" alt="Гора в закате">
-            <div class="card__content">
-                <h2 class="card__name">Гора Эльбрус</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-3.jpg" alt="Леса и снежные горы">
-            <div class="card__content">
-                <h2 class="card__name">Домбай</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card__image" src="images/kirill-pershin-1.jpg" alt="Старый Храм в горах">
-            <div class="card__content">
-                <h2 class="card__name">Карачаево-Черкесия</h2>
-                <button  class="card__like"></button>
-            </div>
-        </div>
-    </section>
+    <footer class="footer">
+        <h2 class="footer__info">&copy; 2020 Mesto Russia</h2>
+    </footer>
 
-    <footer class="footer">&copy; 2020 Mesto Russia</footer>
-
-    <section class="overlay">
-        <div class="popup">
-            <form class="popup__container">
+    <section class="popup">
+        <div class="popup__container">
+            <form name="editForm" class="popup__form">
                 <h2 class="popup__title">Редактировать профиль</h2>
-
-                <div class="popup__data">
-                    <input type="text" placeholder="Жак-Ив Кусто" class="popup__data-name">
-                    <p class="popup__data-line"></p>
-                </div>
-                <div class="popup__data">
-                    <input type="text" placeholder="Исследователь океана" class="popup__data-job">
-                    <p class="popup__data-line"></p>
-                </div>
-
-                <button class="popup__button-save">Сохранить</button>
+                <input class="popup__input popup__input_name" type="text" name="name" placeholder="Жак-Ив Кусто">
+                <input class="popup__input popup__input_job" type="text" name="job" placeholder="Исследователь океана">
+                <button type="submit" class="popup__button-save" aria-label="Сохранить">Сохранить</button>
             </form>
-            <button class="popup__close-button"></button>
+            <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
         </div>
     </section>
 
-    <script src="main.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>

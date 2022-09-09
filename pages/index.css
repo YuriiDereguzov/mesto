@@ -5,37 +5,39 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/profile/profile.css);
-@import url(../blocks/profile-info/profile-info.css);
-@import url(../blocks/avatar/avatar.css);
-@import url(../blocks/button/button.css);
-@import url(../blocks/info-item/info-item.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/overlay/overlay.css);
 @import url(../blocks/popup/popup.css);
 
 /*Структура для элементов*/
-@import url(../blocks/header/__line/header__line.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
-@import url(../blocks/info-item/__edit-button/info-item__edit-button.css);
-@import url(../blocks/info-item/__subtitle/info-item__subtitle.css);
-@import url(../blocks/info-item/__title/info-item__title.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__button-add/profile__button-add.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__info-item/profile__info-item.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__job/profile__job.css);
+@import url(../blocks/profile/__name/profile__name.css);
 
 @import url(../blocks/card/__content/card__content.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__name/card__name.css);
 
+@import url(../blocks/footer/__info/footer__info.css);
+
 @import url(../blocks/popup/__button-save/popup__button-save.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
-@import url(../blocks/popup/__data-line/popup__data-line.css);
-@import url(../blocks/popup/__data/popup__data.css);
-@import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__data-job/popup__data-job.css);
-@import url(../blocks/popup/__data-name/popup__data-text.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__input/popup__input.css);
 
 /*Структура для модификаторов*/
-@import url(../blocks/overlay/_opened/overlay_opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__input/_name/popup__input_name.css);
+@import url(../blocks/popup/__input/_job/popup__input_job.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
+

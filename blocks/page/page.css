@@ -2,5 +2,11 @@
     font-family: "inter", Arial, sans-serif;
     background-color: #000000;
     color: #FFFFFF;
-    margin: 0;
+    margin: 0 19px;
+}
+
+@media screen and (max-width: 450px) {
+    .page {
+        margin: 0;
+    }
 }

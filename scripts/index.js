@@ -1,5 +1,5 @@
-const overlayEl = document.querySelector('.overlay');
-const openPopupButton = document.querySelector('.info-item__edit-button');
+const overlayEl = document.querySelector('.popup');
+const openPopupButton = document.querySelector('.profile__edit-button');
 const closePopupButton = overlayEl.querySelector('.popup__close-button');
 
 // openPopupButton.addEventListener('click', () => {
@@ -10,8 +10,10 @@ const closePopupButton = overlayEl.querySelector('.popup__close-button');
 //     overlayEl.classList.remove('overlay_opened');
 // })
 
+
+
 const toggleOverlay = () => {
-    overlayEl.classList.toggle('overlay_opened');
+    overlayEl.classList.toggle('popup_opened');
 }
 
 openPopupButton.addEventListener('click', () => {
@@ -40,13 +42,13 @@ closePopupButton.addEventListener('click', () => {
 
 
 // Находим форму в DOM
-let formElement = document.querySelector('.popup__container');// Воспользуйтесь методом querySelector()
+let formElement = document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
-let nameInput = document.querySelector('.info-item__title');// Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.info-item__subtitle');// Воспользуйтесь инструментом .querySelector()
+let nameInput = document.querySelector('.profile__name');// Воспользуйтесь инструментом .querySelector()
+let jobInput = document.querySelector('.profile__job');// Воспользуйтесь инструментом .querySelector()
 
-let newTextName = document.querySelector('.popup__data-name')
-let newTextJob = document.querySelector('.popup__data-job')
+let newTextName = document.querySelector('.popup__input_name')
+let newTextJob = document.querySelector('.popup__input_job')
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -62,10 +64,25 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     nameInput.textContent = newTextName.value;
     jobInput.textContent = newTextJob.value;
+    onsubmit = toggleOverlay;
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
 
-onsubmit = toggleOverlay;
+// onsubmit = toggleOverlay;
+
+
+
+
+
+// const likes = document.querySelectorAll('.card__like');
+
+// const toggleClass = (e) => {
+//     e.classList.toggle('card__like_active');
+// }
+
+// likes.addEventListener('click', (e) => {
+//     toggleClass(e.currentTarget);
+// })
