@@ -4,16 +4,15 @@
     align-items: center;
     grid-row-gap: 16px;
     grid-column-gap: 18px;
-    
     max-height: 73px;
     margin: 22px 0 0;
 }
 
 @media screen and (max-width: 450px) {
     .profile__info-item {
-        margin: auto;
         padding-top: 26px;
         text-align: center;
         grid-row-gap: 14px;
+        margin: 0 19px;
     }
 }

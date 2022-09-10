@@ -38,17 +38,14 @@ closePopupButton.addEventListener('click', () => {
 // });
 
 
-
-
-
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.profile__name');// Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.profile__job');// Воспользуйтесь инструментом .querySelector()
 
-let newTextName = document.querySelector('.popup__input_name')
-let newTextJob = document.querySelector('.popup__input_job')
+let newTextName = document.querySelector('.popup__input_type_name')
+let newTextJob = document.querySelector('.popup__input_type_job')
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -64,17 +61,11 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
     nameInput.textContent = newTextName.value;
     jobInput.textContent = newTextJob.value;
-    onsubmit = toggleOverlay;
+    toggleOverlay();
 }
-
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
-
-// onsubmit = toggleOverlay;
-
-
-
 
 
 // const likes = document.querySelectorAll('.card__like');
