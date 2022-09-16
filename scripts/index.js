@@ -87,74 +87,29 @@ openPopupCard.addEventListener('click', togglePopupCard)
 closePopupCard.addEventListener('click', togglePopupCard);
 
 
+// !!!!!!!!!!!
+let formElementCard = document.querySelector('.popup__form_add_card');
+let newNameCard = document.querySelector('.popup__input_card_name')
+let newCardImage = document.querySelector('.popup__input_card_image')
+
+function formSubmitHandlerCard (evt) {
+    evt.preventDefault();
 
 
+    const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
+	const header = newHtmlElement.querySelector('.card__name');
+    const image = newHtmlElement.querySelector('.card__image');
+    header.textContent = newNameCard.value; // устанавливаем заголовок элемента
+    image.src = newCardImage.value;
+    image.alt = newNameCard.value;
+
+    setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
+	list.appendChild(newHtmlElement);
 
 
-// let cardsContainer = document.querySelector('.cards');
-// const cardElement = document.querySelector('.card');
-
-// function addcard(imageValue, titleValue) {
-//     const cardTemplate = document.querySelector('#card-template').content;
-//     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  
-//     cardElement.querySelector('.card__image').textContent = imageValue;
-//     cardElement.querySelector('.card__name').textContent = titleValue;
-    
-//     cardElement.querySelector('.card__like').addEventListener('click', (e) => {
-//     e.target.classList.toggle('card__like_active');
-//     });
-    
-//     cardsContainer.append(cardElement);
-//   }
-
-
-
-
-// let cardsContainer = document.querySelector('.cards');
-// function addcard(newNameCard, newCardImage) {
-//     const cardTemplate = document.querySelector('#card-template').content;
-//     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-
-//     nameInputCard.textContent = newNameCard.value;
-//     imageInputCard.src = newCardImage.value;
-//     imageInputCard.alt = newNameCard.value;
-
-    
-//     cardElement.querySelector('.card__like').addEventListener('click', (e) => {
-//     e.target.classList.toggle('card__like_active');
-//     });
-    
-//     cardsContainer.append(cardElement);
-// }
-
-
-//  initialCards.forEach(function(e) {
-//     const template = document.querySelector('#card').textContent;
-//     const card = card.cloneNode(true);
-//     nameInputCard.textContent = element.name;
-//     imageInputCard.src = element.link;
-//     imageInputCard.alt = element.name;
-//     list.appen(card)
-// })
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-// let formElementCard = document.querySelector('.popup__form_add_card');
-// let nameInputCard = document.querySelector('.card__name');
-// let imageInputCard = document.querySelector('.card__image');
-// let newNameCard = document.querySelector('.popup__input_card_name')
-// let newCardImage = document.querySelector('.popup__input_card_image')
-
-// function formSubmitHandlerCard (evt) {
-//     evt.preventDefault();
-
-//     nameInputCard.textContent = newNameCard.value;
-//     imageInputCard.src = newCardImage.value;
-//     imageInputCard.alt = newNameCard.value;
-
-//         togglePopupCard();
-//     }
-// formElementCard.addEventListener('submit', formSubmitHandlerCard); 
+    togglePopupCard();
+}
+formElementCard.addEventListener('submit', formSubmitHandlerCard); 
 
 const items = [
     {
@@ -215,28 +170,15 @@ function setListenersForItem(element) {
 
     const likeButton = element.querySelector('.card__like')
     likeButton.addEventListener('click', handleLike);
-  
-    // const editButton = element.querySelector('.edit');
-    // editButton.addEventListener('click', handleEdit);
-  
-    // const duplicateButton = element.querySelector('.duplicate');
-    // duplicateButton.addEventListener('click', handleDuplicate);
   }
 
   function handleDelete(event) {
     const currentListItem = event.target.closest('.card') // получаем родителя кнопки
       currentListItem.remove();
-      resetEditMode();
   }
 
   function handleLike(event) {
     const currentListItem = event.target.classList.toggle('card__like_active')
   }
   
-
-
-
-
-
-
 render();
