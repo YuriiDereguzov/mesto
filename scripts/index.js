@@ -212,6 +212,9 @@ function renderItem(text) {
 function setListenersForItem(element) {
     const deleteButton = element.querySelector('.card__delete');
     deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
+
+    const likeButton = element.querySelector('.card__like')
+    likeButton.addEventListener('click', handleLike);
   
     // const editButton = element.querySelector('.edit');
     // editButton.addEventListener('click', handleEdit);
@@ -224,6 +227,10 @@ function setListenersForItem(element) {
     const currentListItem = event.target.closest('.card') // получаем родителя кнопки
       currentListItem.remove();
       resetEditMode();
+  }
+
+  function handleLike(event) {
+    const currentListItem = event.target.classList.toggle('card__like_active')
   }
   
 
