@@ -203,9 +203,29 @@ function renderItem(text) {
     header.textContent = text.name; // устанавливаем заголовок элемента
     image.src = text.link;
 
-	// setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
+    // newHtmlElement готовая карточка с кнопками
+	setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
 	list.appendChild(newHtmlElement); // вставляем в DOM
 }
+
+// element это наша карточка с кнопками
+function setListenersForItem(element) {
+    const deleteButton = element.querySelector('.card__delete');
+    deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
+  
+    // const editButton = element.querySelector('.edit');
+    // editButton.addEventListener('click', handleEdit);
+  
+    // const duplicateButton = element.querySelector('.duplicate');
+    // duplicateButton.addEventListener('click', handleDuplicate);
+  }
+
+  function handleDelete(event) {
+    const currentListItem = event.target.closest('.card') // получаем родителя кнопки
+      currentListItem.remove();
+      resetEditMode();
+  }
+  
 
 
 
