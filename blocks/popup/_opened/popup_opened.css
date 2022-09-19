@@ -1,5 +1,7 @@
 .popup_opened {
-    display: block;
+    /* display: block; */
+    visibility: visible;
+    opacity: 1;
 }
 
 /* .overlay_opened {
