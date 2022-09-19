@@ -37,6 +37,7 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__card-name/popup__card-name.css);
+@import url(../blocks/popup/__big-image/popup__big-image.css);
 
 /*Структура для модификаторов*/
 @import url(../blocks/popup/_opened/popup_opened.css);

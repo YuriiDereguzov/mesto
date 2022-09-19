@@ -173,8 +173,16 @@ function setListenersForItem(element) {
     likeButton.addEventListener('click', handleLike);
 
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const bigImageName = element.querySelector('.card__name').textContent;
+    const popupImageName = document.querySelector('.popup__card-name');
+    const bigImage = element.querySelector('.card__image');
+    const popupBigImage = document.querySelector('.popup__big-image');
+    
     const openButtonImage = element.querySelector('.card__image-btn');
     openButtonImage.addEventListener('click', () => {
+      popupBigImage.src = bigImage.src;
+      popupImageName.textContent = bigImageName;
+      
       popupImage.classList.add('popup_opened');
     });
   }
