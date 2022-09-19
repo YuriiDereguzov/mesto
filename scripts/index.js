@@ -182,7 +182,7 @@ function setListenersForItem(element) {
     openButtonImage.addEventListener('click', () => {
       popupBigImage.src = bigImage.src;
       popupImageName.textContent = bigImageName;
-      
+
       popupImage.classList.add('popup_opened');
     });
   }
@@ -198,10 +198,6 @@ function setListenersForItem(element) {
 
 
   const popupImage = document.querySelector('.popup_image_big');
-  // клоне
-  // адд класс
-  // адд то дом
-  // адд лиснетр фор клосе
   const closePopupImage = popupImage.querySelector('.popup__close-button_image_big');
     
   closePopupImage.addEventListener('click', () => {
