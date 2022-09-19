@@ -87,7 +87,7 @@ openPopupCard.addEventListener('click', togglePopupCard)
 closePopupCard.addEventListener('click', togglePopupCard);
 
 
-// !!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 let formElementCard = document.querySelector('.popup__form_add_card');
 let newNameCard = document.querySelector('.popup__input_card_name')
 let newCardImage = document.querySelector('.popup__input_card_image')
@@ -97,16 +97,17 @@ function formSubmitHandlerCard (evt) {
 
 
     const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
-	const header = newHtmlElement.querySelector('.card__name');
+	  const header = newHtmlElement.querySelector('.card__name');
     const image = newHtmlElement.querySelector('.card__image');
     header.textContent = newNameCard.value; // устанавливаем заголовок элемента
     image.src = newCardImage.value;
     image.alt = newNameCard.value;
 
     setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
-	list.appendChild(newHtmlElement);
+	  list.appendChild(newHtmlElement);
 
-
+    newNameCard.value = "";
+    newCardImage.value = "";
     togglePopupCard();
 }
 formElementCard.addEventListener('submit', formSubmitHandlerCard); 
@@ -154,11 +155,11 @@ function render() {
 function renderItem(text) {
 	const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
 	const header = newHtmlElement.querySelector('.card__name');
-    const image = newHtmlElement.querySelector('.card__image');
-    header.textContent = text.name; // устанавливаем заголовок элемента
-    image.src = text.link;
+  const image = newHtmlElement.querySelector('.card__image');
+  header.textContent = text.name; // устанавливаем заголовок элемента
+  image.src = text.link;
 
-    // newHtmlElement готовая карточка с кнопками
+  // newHtmlElement готовая карточка с кнопками
 	setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
 	list.appendChild(newHtmlElement); // вставляем в DOM
 }
@@ -170,15 +171,33 @@ function setListenersForItem(element) {
 
     const likeButton = element.querySelector('.card__like')
     likeButton.addEventListener('click', handleLike);
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const openButtonImage = element.querySelector('.card__image-btn');
+    openButtonImage.addEventListener('click', () => {
+      popupImage.classList.add('popup_opened');
+    });
   }
 
   function handleDelete(event) {
     const currentListItem = event.target.closest('.card') // получаем родителя кнопки
-      currentListItem.remove();
+    currentListItem.remove();
   }
 
   function handleLike(event) {
     const currentListItem = event.target.classList.toggle('card__like_active')
   }
+
+
+  const popupImage = document.querySelector('.popup_image_big');
+  // клоне
+  // адд класс
+  // адд то дом
+  // адд лиснетр фор клосе
+  const closePopupImage = popupImage.querySelector('.popup__close-button_image_big');
+    
+  closePopupImage.addEventListener('click', () => {
+    popupImage.classList.remove('popup_opened');
+  })
   
 render();
