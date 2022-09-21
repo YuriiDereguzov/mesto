@@ -1,34 +1,6 @@
-// openPopupButton.addEventListener('click', () => {
-//     overlayEl.classList.add('overlay_opened');
-// })
-
-// closePopupButton.addEventListener('click', () => {
-//     overlayEl.classList.remove('overlay_opened');
-// })
-
-
-// document.addEventListener('click', (event) => {
-
-//     if (event.target.classList.contains('info-item__edit-button')) {
-//         toggleOverlay();
-//     }
-
-//     if (event.target.classList.contains('popup__close-button')) {
-//         toggleOverlay();
-//     }
-// });
-
-
-// const cardElement = document.querySelector('.card');
-// cardElement.querySelector('.card__like').addEventListener('click', (e) => {
-//     e.target.classList.toggle('card__like_active');
-//   });
-
-
-
-const popup = document.querySelector('.popup');
+const popupEditProfile = document.querySelector('.popup_edit-profile');
 const openPopupButton = document.querySelector('.profile__edit-button');
-const closePopupButton = popup.querySelector('.popup__close-button');
+const closePopupButton = popupEditProfile.querySelector('.popup__close-button');
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
@@ -43,13 +15,19 @@ const closePopupCard = popupCard.querySelector('.popup__close-button_add_card');
 
 
 const togglePopup = () => {
-    popup.classList.toggle('popup_opened');
+  popupEditProfile.classList.toggle('popup_opened');
 }
 
 
 const togglePopupCard = () => {
     popupCard.classList.toggle('popup_opened');
 }
+
+
+const togglePopupImage = () => {
+  popupImage.classList.toggle('popup_opened');
+}
+
 
 
 // Обработчик «отправки» формы, хотя пока
@@ -76,9 +54,9 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 openPopupButton.addEventListener('click', () => {
-    togglePopup();
-    newTextName.value = nameInput.textContent;
-    newTextJob.value = jobInput.textContent;
+  togglePopup();
+  newTextName.value = nameInput.textContent;
+  newTextJob.value = jobInput.textContent;
 })
 closePopupButton.addEventListener('click', togglePopup);
 
@@ -88,9 +66,9 @@ closePopupCard.addEventListener('click', togglePopupCard);
 
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-let formElementCard = document.querySelector('.popup__form_add_card');
-let newNameCard = document.querySelector('.popup__input_card_name')
-let newCardImage = document.querySelector('.popup__input_card_image')
+const formElementCard = document.querySelector('.popup__form_add_card');
+let newNameCard = document.querySelector('.popup__input_card_name');
+let newCardImage = document.querySelector('.popup__input_card_image');
 
 function formSubmitHandlerCard (evt) {
     evt.preventDefault();
@@ -104,7 +82,7 @@ function formSubmitHandlerCard (evt) {
     image.alt = newNameCard.value;
 
     setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
-	  list.appendChild(newHtmlElement);
+	  list.prepend(newHtmlElement);
 
     newNameCard.value = "";
     newCardImage.value = "";
@@ -147,12 +125,12 @@ const formInputImg = document.querySelector(".popup__input_card_image"); // ин
 
 
 
-function render() {
-	items.forEach(renderItem);
+function renderInitialCards() {
+	items.forEach(renderInitialCardsItem);
 }
 
 // основная функция рендеринга
-function renderItem(text) {
+function renderInitialCardsItem(text) {
 	const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
 	const header = newHtmlElement.querySelector('.card__name');
   const image = newHtmlElement.querySelector('.card__image');
@@ -164,44 +142,45 @@ function renderItem(text) {
 	list.appendChild(newHtmlElement); // вставляем в DOM
 }
 
+const popupImage = document.querySelector('.popup_image_big');
+const closePopupImage = popupImage.querySelector('.popup__close-button_image_big');
+const imageTitle = popupImage.querySelector('.popup__card-name');
+const imagePopup = popupImage.querySelector('.popup__big-image');
+
 // element это наша карточка с кнопками
 function setListenersForItem(element) {
-    const deleteButton = element.querySelector('.card__delete');
-    deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
+  const deleteButton = element.querySelector('.card__delete');
+  deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
 
-    const likeButton = element.querySelector('.card__like')
-    likeButton.addEventListener('click', handleLike);
+  const likeButton = element.querySelector('.card__like')
+  likeButton.addEventListener('click', handleLike);
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    const bigImageName = element.querySelector('.card__name').textContent;
-    const popupImageName = document.querySelector('.popup__card-name');
-    const bigImage = element.querySelector('.card__image');
-    const popupBigImage = document.querySelector('.popup__big-image');
-    
-    const openButtonImage = element.querySelector('.card__image-btn');
-    openButtonImage.addEventListener('click', () => {
-      popupBigImage.src = bigImage.src;
-      popupImageName.textContent = bigImageName;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const bigImageName = element.querySelector('.card__name').textContent;
+  const bigImage = element.querySelector('.card__image');
 
-      popupImage.classList.add('popup_opened');
-    });
-  }
+  const openButtonImage = element.querySelector('.card__image-btn');
+  openButtonImage.addEventListener('click', () => {
+    imagePopup.src = bigImage.src;
+    imageTitle.textContent = bigImageName;
 
-  function handleDelete(event) {
-    const currentListItem = event.target.closest('.card') // получаем родителя кнопки
-    currentListItem.remove();
-  }
+    togglePopupImage();
+    // popupImage.classList.add('popup_opened');
+  });
+}
 
-  function handleLike(event) {
-    const currentListItem = event.target.classList.toggle('card__like_active')
-  }
+function handleDelete(event) {
+  const currentListItem = event.target.closest('.card') // получаем родителя кнопки
+  currentListItem.remove();
+}
 
+function handleLike(event) {
+  const currentListItem = event.target.classList.toggle('card__like_active')
+}
 
-  const popupImage = document.querySelector('.popup_image_big');
-  const closePopupImage = popupImage.querySelector('.popup__close-button_image_big');
-    
-  closePopupImage.addEventListener('click', () => {
-    popupImage.classList.remove('popup_opened');
-  })
+closePopupImage.addEventListener('click', togglePopupImage);
+// closePopupImage.addEventListener('click', () => {
+//   popupImage.classList.remove('popup_opened');
+// })
   
-render();
+renderInitialCards();
