@@ -6,8 +6,8 @@ const formElementProfile = document.querySelector('.popup__form');// Воспо�
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.profile__name');// Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector('.profile__job');// Воспользуйтесь инструментом .querySelector()
-const newTextName = document.querySelector('.popup__input_type_name')
-const newTextJob = document.querySelector('.popup__input_type_job')
+const newTextName = document.querySelector('.popup__input_type_name');
+const newTextJob = document.querySelector('.popup__input_type_job');
 
 const formElementCard = document.querySelector('.popup__form_add_card');
 const newNameCard = document.querySelector('.popup__input_card_name');
@@ -28,24 +28,12 @@ const closePopupImage = popupImage.querySelector('.popup__close-button_image_big
 const imageTitle = popupImage.querySelector('.popup__card-name');
 const imagePopup = popupImage.querySelector('.popup__big-image');
 
-// function openPopup (el) {
-//   el.classList.toggle('popup_opened');
-// }
-// function closePopup (el) {
-//   el.classList.remove('popup_opened');
-// }
-const togglePopupEditProfile = () => {
-  popupEditProfile.classList.toggle('popup_opened');
+function openPopup (el) {
+  el.classList.add('popup_opened');
 }
-
-const togglePopupAddCard = () => {
-  popupAddCard.classList.toggle('popup_opened');
+function closePopup (el) {
+  el.classList.remove('popup_opened');
 }
-
-const togglePopupImage = () => {
-  popupImage.classList.toggle('popup_opened');
-}
-
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -58,7 +46,7 @@ function submitEditProfileForm (evt) {
   // Вставьте новые значения с помощью textContent
   nameInput.textContent = newTextName.value;
   jobInput.textContent = newTextJob.value;
-  togglePopupEditProfile();
+  closePopup(popupEditProfile);
 }
 
 function submitAddCardForm (evt) {
@@ -76,7 +64,7 @@ function submitAddCardForm (evt) {
 
   newNameCard.value = "";
   newCardImage.value = "";
-  togglePopupAddCard();
+  closePopup(popupAddCard);
 }
 
 function renderInitialCards() {
@@ -98,9 +86,9 @@ function setListenersForItem(element) {
   const deleteButton = element.querySelector('.card__delete');
   deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
 
-  const likeButton = element.querySelector('.card__like')
+  const likeButton = element.querySelector('.card__like');
   likeButton.addEventListener('click', handleLike);
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   const bigImageName = element.querySelector('.card__name').textContent;
   const bigImage = element.querySelector('.card__image');
 
@@ -108,18 +96,17 @@ function setListenersForItem(element) {
   openPopupImage.addEventListener('click', () => {
     imagePopup.src = bigImage.src;
     imageTitle.textContent = bigImageName;
-    togglePopupImage();
-    // popupImage.classList.add('popup_opened');
+    openPopup(popupImage);
   });
 }
 
 function handleDelete(event) {
-  const currentListItem = event.target.closest('.card') // получаем родителя кнопки
+  const currentListItem = event.target.closest('.card'); // получаем родителя кнопки
   currentListItem.remove();
 }
 
 function handleLike(event) {
-  const currentListItem = event.target.classList.toggle('card__like_active')
+  const currentListItem = event.target.classList.toggle('card__like_active');
 }
 
 
@@ -127,21 +114,24 @@ function handleLike(event) {
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', submitEditProfileForm); 
 openPopupEditProfile.addEventListener('click', () => {
-  // openPopupEditProfile(popupEditProfile);
-  togglePopupEditProfile();
   newTextName.value = nameInput.textContent;
   newTextJob.value = jobInput.textContent;
-})
-// closePopupEditProfile.addEventListener('click', closePopup(popupEditProfile));
-closePopupEditProfile.addEventListener('click', togglePopupEditProfile);
+  openPopup(popupEditProfile);
+});
+closePopupEditProfile.addEventListener('click', () => {
+  closePopup(popupEditProfile);
+});
 
 formElementCard.addEventListener('submit', submitAddCardForm);
-openPopupAddCard.addEventListener('click', togglePopupAddCard);
-closePopupAddCard.addEventListener('click', togglePopupAddCard);
+openPopupAddCard.addEventListener('click', () => {
+  openPopup(popupAddCard);
+});
+closePopupAddCard.addEventListener('click', () => {
+  closePopup(popupAddCard);
+});
 
-closePopupImage.addEventListener('click', togglePopupImage);
-// closePopupImage.addEventListener('click', () => {
-//   popupImage.classList.remove('popup_opened');
-// })
+closePopupImage.addEventListener('click', () => {
+  closePopup(popupImage);
+});
 
 renderInitialCards();
