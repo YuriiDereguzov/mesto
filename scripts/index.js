@@ -130,6 +130,8 @@ closePopupEditProfile.addEventListener('click', () => {
 
 formElementCard.addEventListener('submit', submitAddCardForm);
 openPopupAddCard.addEventListener('click', () => {
+  newNameCard.value = "";
+  newCardImage.value = "";
   openPopup(popupAddCard);
 });
 closePopupAddCard.addEventListener('click', () => {
