@@ -28,11 +28,11 @@ const closePopupImage = popupImage.querySelector('.popup__close-button_image_big
 const imageTitle = popupImage.querySelector('.popup__card-name');
 const imagePopup = popupImage.querySelector('.popup__big-image');
 
-function openPopup (el) {
-  el.classList.add('popup_opened');
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
 }
-function closePopup (el) {
-  el.classList.remove('popup_opened');
+function closePopup (popup) {
+  popup.classList.remove('popup_opened');
 }
 
 // Обработчик «отправки» формы, хотя пока
