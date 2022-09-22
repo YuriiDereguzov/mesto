@@ -28,6 +28,8 @@ const closePopupImage = popupImage.querySelector('.popup__close-button_image_big
 const imageTitle = popupImage.querySelector('.popup__card-name');
 const imagePopup = popupImage.querySelector('.popup__big-image');
 
+const itemslist = items.map(createCard);
+
 function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
@@ -67,20 +69,23 @@ function submitAddCardForm (evt) {
   closePopup(popupAddCard);
 }
 
-function renderInitialCards() {
-	items.forEach(renderInitialCardsItem);
-}
 // основная функция рендеринга
-function renderInitialCardsItem(text) {
+function createCard(text) {
 	const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
 	const header = newHtmlElement.querySelector('.card__name');
   const image = newHtmlElement.querySelector('.card__image');
   header.textContent = text.name; // устанавливаем заголовок элемента
   image.src = text.link;
-  // newHtmlElement готовая карточка с кнопками
-	setListenersForItem(newHtmlElement); // назначаем листенеры внутри каждого элемента
-	list.appendChild(newHtmlElement); // вставляем в DOM
+  image.alt = text.name;
+
+  setListenersForItem(newHtmlElement);
+  return newHtmlElement;
 }
+
+function renderInitialCards() {
+	list.prepend(...itemslist);
+}
+
 // element это наша карточка с кнопками
 function setListenersForItem(element) {
   const deleteButton = element.querySelector('.card__delete');
@@ -109,6 +114,7 @@ function handleLike(event) {
   const currentListItem = event.target.classList.toggle('card__like_active');
 }
 
+renderInitialCards();
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -133,5 +139,3 @@ closePopupAddCard.addEventListener('click', () => {
 closePopupImage.addEventListener('click', () => {
   closePopup(popupImage);
 });
-
-renderInitialCards();
