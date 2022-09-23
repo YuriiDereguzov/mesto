@@ -97,9 +97,9 @@ function setListenersForItem(element) {
   const bigImage = element.querySelector('.card__image');
 
   const openPopupImage = element.querySelector('.card__image-btn');
-  openPopupImage.addEventListener('click', () => hendleGeneratedImageCard(imagePopup.src = bigImage.src, imageTitle.textContent = bigImageName));
+  openPopupImage.addEventListener('click', () => handleGenerateImagePopup(imagePopup.src = bigImage.src, imageTitle.textContent = bigImageName));
 }
-function hendleGeneratedImageCard() {
+function handleGenerateImagePopup() {
   openPopup(popupImage);
 }
 
