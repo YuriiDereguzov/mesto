@@ -28,8 +28,6 @@ const closePopupImage = popupImage.querySelector('.popup__close-button_image_big
 const imageTitle = popupImage.querySelector('.popup__card-name');
 const imagePopup = popupImage.querySelector('.popup__big-image');
 
-const itemslist = items.map(createCard);
-
 function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
@@ -83,6 +81,7 @@ function createCard(text) {
 }
 
 function renderInitialCards() {
+  const itemslist = items.map(createCard);
 	list.prepend(...itemslist);
 }
 
@@ -98,11 +97,10 @@ function setListenersForItem(element) {
   const bigImage = element.querySelector('.card__image');
 
   const openPopupImage = element.querySelector('.card__image-btn');
-  openPopupImage.addEventListener('click', () => {
-    imagePopup.src = bigImage.src;
-    imageTitle.textContent = bigImageName;
-    openPopup(popupImage);
-  });
+  openPopupImage.addEventListener('click', () => hendleGeneratedImageCard(imagePopup.src = bigImage.src, imageTitle.textContent = bigImageName));
+}
+function hendleGeneratedImageCard() {
+  openPopup(popupImage);
 }
 
 function handleDelete(event) {
