@@ -5,7 +5,7 @@ const closePopupEditProfile = popupEditProfile.querySelector('.popup__close-butt
 const formElementProfile = document.querySelector('.popup__form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.profile__name');// Воспользуйтесь инструментом .querySelector()
-const jobInput = document.querySelector('.profile__job');// Воспользуйтесь инструментом .querySelector()
+const jobInput = document.querySelector('.profile__job');
 const newTextName = document.querySelector('.popup__input_type_name');
 const newTextJob = document.querySelector('.popup__input_type_job');
 
@@ -90,18 +90,21 @@ function setListenersForItem(element) {
   const likeButton = element.querySelector('.card__like');
   likeButton.addEventListener('click', handleLike);
 
+  const bigImageName = element.querySelector('.card__name').textContent;
+  const bigImage = element.querySelector('.card__image');
+
   const cardImage = element.querySelector('.card__image-btn');
-  cardImage.addEventListener('click', () => handleGenerateImagePopup(element));
+  cardImage.addEventListener('click', handleGenerateImagePopup);
 }
-function handleGenerateImagePopup(element) {
-  console.log(element);
+function handleGenerateImagePopup(e) {
+  const element = e.currentTarget.parentElement;
   const bigImageName = element.querySelector('.card__name').textContent;
   const bigImage = element.querySelector('.card__image');
 
   imagePopup.src = bigImage.src;
   imageTitle.textContent = bigImageName;
   imagePopup.alt = bigImageName;
-
+  
   openPopup(popupImage);
 }
 
