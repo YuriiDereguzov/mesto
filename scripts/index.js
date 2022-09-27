@@ -18,7 +18,6 @@ const openPopupAddCard = document.querySelector('.profile__button-add');
 const closePopupAddCard = popupAddCard.querySelector('.popup__close-button_add_card');
 
 const list = document.querySelector(".cards");
-const itemTemplate = document.querySelector(".card-template").content;
 const formButton = document.querySelector(".popup__button-save"); // кнопка сабмита
 const formInput = document.querySelector(".popup__input_card_name"); // инпут формы
 const formInputImg = document.querySelector(".popup__input_card_image"); // инпут формы
@@ -66,15 +65,16 @@ function submitAddCardForm (evt) {
 
 // основная функция рендеринга
 function createCard(text) {
-	const newHtmlElement = itemTemplate.cloneNode(true); // клонируем ноду
-	const header = newHtmlElement.querySelector('.card__name');
-  const image = newHtmlElement.querySelector('.card__image');
+  const newHtmlElement = document.querySelector(".card-template").content.cloneNode(true); // клонируем ноду
+  const card = newHtmlElement.querySelector('.card'); // теперь мы свободны от template и работаем именно с dom узлом
+  const header = card.querySelector('.card__name');
+  const image = card.querySelector('.card__image');
   header.textContent = text.name; // устанавливаем заголовок элемента
   image.src = text.link;
   image.alt = text.name;
 
-  setListenersForItem(newHtmlElement);
-  return newHtmlElement;
+  setListenersForItem(card);
+  return card;
 }
 
 function renderInitialCards() {
@@ -90,21 +90,18 @@ function setListenersForItem(element) {
   const likeButton = element.querySelector('.card__like');
   likeButton.addEventListener('click', handleLike);
 
-  const bigImageName = element.querySelector('.card__name').textContent;
-  const bigImage = element.querySelector('.card__image');
-
   const cardImage = element.querySelector('.card__image-btn');
-  cardImage.addEventListener('click', handleGenerateImagePopup);
+  cardImage.addEventListener('click', () => handleGenerateImagePopup(element));
 }
-function handleGenerateImagePopup(e) {
-  const element = e.currentTarget.parentElement;
+
+function handleGenerateImagePopup(element) {
   const bigImageName = element.querySelector('.card__name').textContent;
   const bigImage = element.querySelector('.card__image');
 
   imagePopup.src = bigImage.src;
   imageTitle.textContent = bigImageName;
   imagePopup.alt = bigImageName;
-  
+
   openPopup(popupImage);
 }
 
