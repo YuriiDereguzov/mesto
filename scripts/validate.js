@@ -125,16 +125,3 @@ const hasInvalidInput = (inputList) => {
       setEventListeners(formElement, obj);
     });
   }
-  
-  // включение валидации вызовом enableValidation
-  // Вызовем функцию
-  // все настройки передаются при вызове
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.button',
-    invalidButtonClass: 'popup__button_invalid',
-    inactiveButtonClass: "disabled",
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-  }); 
