@@ -72,21 +72,19 @@ const showInputError = (formElement, inputElement, errorMessage, obj) => {
   
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (formElement, inputElement, obj) => {
-   // Находим элемент ошибки
+  // Находим элемент ошибки
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   
   inputElement.classList.remove(obj.inputErrorClass);
   // Скрываем сообщение об ошибке
   errorElement.classList.remove(obj.errorClass);
-    // Очистим ошибку
-    errorElement.textContent = '';
+  // Очистим ошибку
+  errorElement.textContent = '';
 }
   
 // Функция isValid теперь принимает formElement и inputElement,
 // а не берёт их из внешней области видимости
 const isValid = (obj, formElement, inputElement) => {
-  const submitButton = formElement.querySelector(obj.submitButtonSelector);
-  
   if (!inputElement.validity.valid) {
     isValidText (inputElement);
     // showInputError теперь получает параметром форму, в которой
