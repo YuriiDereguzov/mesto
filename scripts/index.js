@@ -52,8 +52,6 @@ function submitAddCardForm (evt) {
   list.prepend(createCard(userNewCard));
 
   inactiveButtonSubmit(buttonSubmitCard);
-  // buttonSubmitCard.classList.add('popup__button_invalid');
-  // buttonSubmitCard.setAttribute("disabled", true);
   closePopup(popupAddCard);
   evt.target.reset();
 }
@@ -134,6 +132,24 @@ function closePopupOverlay () {
   });
 }
 
+function deliteError (formElement) {
+  // Найдём все спаны и инпуты с указанным классом в DOM,
+  // сделаем из них массив методом Array.from
+  const spanList = Array.from(formElement.querySelectorAll('.popup__input-error'));
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  // Переберём полученные коллекции
+  spanList.forEach((spanElement) => {
+    // Скрываем сообщение об ошибке
+    spanElement.classList.remove('popup__input-error_active');
+    // Очистим ошибку
+    spanElement.textContent = '';
+  });
+  inputList.forEach((inputElement) => {
+    // скрываем красное подчеркивание
+    inputElement.classList.remove('popup__input_type_error');
+  });
+}
+
 // Вызовем функцию
 renderInitialCards();
 
@@ -142,30 +158,11 @@ document.addEventListener("click", closePopupOverlay);
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', submitEditProfileForm); 
 popupEditProfileOpen.addEventListener('click', () => {
+  deliteError(popupEditProfile);
   textNameNew.value = nameInput.textContent;
   textJobNew.value = jobInput.textContent;
   openPopup(popupEditProfile);
 });
 
 formElementCard.addEventListener('submit', submitAddCardForm);
-popupAddCardOpen.addEventListener('click', () => {
-  // formElementCard.reset();
-  // cardNameInput.value = "";
-  // cardLinkInput.value = "";
-  
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!
-  // // hideInputError(formElement, inputElement, obj);
-  
-  // // Находим элемент ошибки
-  // const errorElement = formElementProfile.querySelector(`.popup__input-error`); // это спан ошибки
-  // const inputError = formElementProfile.querySelector('.popup__input'); // это инпут формы
-
-  // inputError.classList.remove('popup__input_type_error'); // это red border-bottom
-  // // Скрываем сообщение об ошибке
-  // errorElement.classList.remove('popup__input-error_active'); // это спан ошибки
-  // // Очистим ошибку
-  // errorElement.textContent = '';
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  openPopup(popupAddCard);
-});
+popupAddCardOpen.addEventListener('click', () => openPopup(popupAddCard));
