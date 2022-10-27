@@ -24,7 +24,7 @@ const popupImage = document.querySelector('.popup_image_big');
 const imageTitle = popupImage.querySelector('.popup__card-name');
 const imagePopup = popupImage.querySelector('.popup__big-image');
 
-function openPopup (popup) {
+export default function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
 }

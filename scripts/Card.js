@@ -1,3 +1,4 @@
+import openPopup from './index.js';
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -50,12 +51,12 @@ export default class Card {
       this._handleDelete();
     });
 
-    // cardImageButton.addEventListener('click', () => {
-    //   const popupImage = document.querySelector('.popup_image_big');
-    //   document.querySelector('.popup__big-image').src = this._link;
-    //   document.querySelector('.popup__card-name').textContent = this._name;
-    //   this.openPopup(popupImage);
-    // });
+    cardImageButton.addEventListener('click', () => {
+      const popupImage = document.querySelector('.popup_image_big');
+      document.querySelector('.popup__big-image').src = this._link;
+      document.querySelector('.popup__card-name').textContent = this._name;
+      openPopup(popupImage);
+    });
   }
 }
       
