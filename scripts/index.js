@@ -1,3 +1,5 @@
+import Card from './Card.js';
+
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupEditProfileOpen = document.querySelector('.profile__edit-button');
 // Находим форму в DOM
@@ -55,57 +57,65 @@ function submitAddCardForm (evt) {
   closePopup(popupAddCard);
   evt.target.reset();
 }
+//
+function createCard (item) {
+  // Создадим экземпляр карточки
+  const card = new Card(item, '.card-template');
+  // Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
 
-// основная функция рендеринга
-function createCard(text) {
-  const newHtmlElement = document.querySelector(".card-template").content.cloneNode(true); // клонируем ноду
-  const card = newHtmlElement.querySelector('.card'); // теперь мы свободны от template и работаем именно с dom узлом
-  const header = card.querySelector('.card__name');
-  const image = card.querySelector('.card__image');
-  header.textContent = text.name; // устанавливаем заголовок элемента
-  image.src = text.link;
-  image.alt = text.name;
-
-  setListenersForItem(card);
-  return card;
-}
-
+  return cardElement;
+};
+//
 function renderInitialCards() {
   const itemslist = items.map(createCard);
 	list.prepend(...itemslist);
 }
+// // основная функция рендеринга
+// function createCard(text) {
+//   const newHtmlElement = document.querySelector(".card-template").content.cloneNode(true); // клонируем ноду
+//   const card = newHtmlElement.querySelector('.card'); // теперь мы свободны от template и работаем именно с dom узлом
+//   const header = card.querySelector('.card__name');
+//   const image = card.querySelector('.card__image');
+//   header.textContent = text.name; // устанавливаем заголовок элемента
+//   image.src = text.link;
+//   image.alt = text.name;
 
-// element это наша карточка с кнопками
-function setListenersForItem(element) {
-  const deleteButton = element.querySelector('.card__delete');
-  deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
+//   setListenersForItem(card);
+//   return card;
+// }
 
-  const likeButton = element.querySelector('.card__like');
-  likeButton.addEventListener('click', handleLike);
+// // element это наша карточка с кнопками
+// function setListenersForItem(element) {
+//   const deleteButton = element.querySelector('.card__delete');
+//   deleteButton.addEventListener('click', handleDelete); // TODO передаем ссылку на функцию
 
-  const cardImage = element.querySelector('.card__image-btn');
-  cardImage.addEventListener('click', () => handleGenerateImagePopup(element));
-}
+//   const likeButton = element.querySelector('.card__like');
+//   likeButton.addEventListener('click', handleLike);
 
-function handleGenerateImagePopup(element) {
-  const bigImageName = element.querySelector('.card__name').textContent;
-  const bigImage = element.querySelector('.card__image');
+//   const cardImage = element.querySelector('.card__image-btn');
+//   cardImage.addEventListener('click', () => handleGenerateImagePopup(element));
+// }
 
-  imagePopup.src = bigImage.src;
-  imageTitle.textContent = bigImageName;
-  imagePopup.alt = bigImageName;
+// function handleGenerateImagePopup(element) {
+//   const bigImageName = element.querySelector('.card__name').textContent;
+//   const bigImage = element.querySelector('.card__image');
 
-  openPopup(popupImage);
-}
+//   imagePopup.src = bigImage.src;
+//   imageTitle.textContent = bigImageName;
+//   imagePopup.alt = bigImageName;
 
-function handleDelete(event) {
-  const currentListItem = event.target.closest('.card'); // получаем родителя кнопки
-  currentListItem.remove();
-}
+//   openPopup(popupImage);
+// }
 
-function handleLike(event) {
-  const currentListItem = event.target.classList.toggle('card__like_active');
-}
+// function handleDelete(event) {
+//   const currentListItem = event.target.closest('.card'); // получаем родителя кнопки
+//   currentListItem.remove();
+// }
+
+// function handleLike(event) {
+//   const currentListItem = event.target.classList.toggle('card__like_active');
+// }
 
 // функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
 function closeByEscape(evt) {
