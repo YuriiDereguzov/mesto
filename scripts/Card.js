@@ -39,9 +39,9 @@ export default class Card {
   }
 
   _setEventListeners() {
-    const cardImageButton = this._element.querySelector('.card__image-btn')
-    const likeButton = this._element.querySelector('.card__like')
-    const deleteButton = this._element.querySelector('.card__delete')
+    const cardImageButton = this._element.querySelector('.card__image-btn');
+    const likeButton = this._element.querySelector('.card__like');
+    const deleteButton = this._element.querySelector('.card__delete');
 
     likeButton.addEventListener('click', () => {
       this._handleLike();
@@ -59,13 +59,3 @@ export default class Card {
     });
   }
 }
-      
-// items.forEach((item) => {
-//   // Создадим экземпляр карточки
-//   const card = new Card(item, '.card-template');
-//   // Создаём карточку и возвращаем наружу
-//   const cardElement = card.generateCard();
-
-//   // Добавляем в DOM
-//   document.querySelector('.cards').append(cardElement);
-// }); 
