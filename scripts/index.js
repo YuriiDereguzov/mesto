@@ -1,4 +1,19 @@
+import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.button',
+  invalidButtonClass: 'popup__button_invalid',
+  inactiveButtonClass: "disabled",
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}
+// new FormValidator (settings, popupEditProfile)
+// new FormValidator (settings, popupAddCard)
+
+
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const popupEditProfileOpen = document.querySelector('.profile__edit-button');
@@ -16,13 +31,13 @@ const cardLinkInput = document.querySelector('.popup__input_card_image');
 
 const popupAddCard = document.querySelector('.popup_add_card');
 const popupAddCardOpen = document.querySelector('.profile__button-add');
-const buttonSubmitCard = popupAddCard.querySelector('.popup__button-save');
+// const buttonSubmitCard = popupAddCard.querySelector('.popup__button-save');
 
 const list = document.querySelector(".cards");
 
 const popupImage = document.querySelector('.popup_image_big');
-const imageTitle = popupImage.querySelector('.popup__card-name');
-const imagePopup = popupImage.querySelector('.popup__big-image');
+// const imageTitle = popupImage.querySelector('.popup__card-name');
+// const imagePopup = popupImage.querySelector('.popup__big-image');
 
 export default function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -53,7 +68,7 @@ function submitAddCardForm (evt) {
 
   list.prepend(createCard(userNewCard));
 
-  inactiveButtonSubmit(buttonSubmitCard);
+  // inactiveButtonSubmit(buttonSubmitCard);
   closePopup(popupAddCard);
   evt.target.reset();
 }

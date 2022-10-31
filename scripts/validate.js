@@ -1,3 +1,13 @@
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.button',
+  invalidButtonClass: 'popup__button_invalid',
+  inactiveButtonClass: "disabled",
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}
+
 const errorMassage = {
   empty: 'Вы пропустили это поле.',
   wrongUrl: 'Введите адрес сайта.'
@@ -136,12 +146,4 @@ const enableValidation = (obj) => {
 // включение валидации вызовом enableValidation
 // Вызовем функцию
 // все настройки передаются при вызове
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.button',
-  invalidButtonClass: 'popup__button_invalid',
-  inactiveButtonClass: "disabled",
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-}); 
+enableValidation(settings); 
