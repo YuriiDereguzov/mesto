@@ -1,20 +1,38 @@
 export default class FormValidator {
     constructor(setting, form) {
         this._form = form;
-        this._inputSelector = setting.inputSelector;
+        // this._inputSelector = setting.inputSelector;
         this._inputErrorClass = setting.inputErrorClass;
         this._errorClass = setting.errorClass;
         this._invalidButtonClass = setting.invalidButtonClass;
-        this._submitButtonSelector = setting.submitButtonSelector;
-        this._buttonElement = this._form.querySelector(this._submitButtonSelector);
-        this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+        // this._submitButtonSelector = setting.submitButtonSelector;
+        this._buttonElement = this._form.querySelector(setting.submitButtonSelector);
+        // Найдём все спаны и инпуты с указанным классом в DOM,
+        // сделаем из них массив методом Array.from
+        this._spanList = Array.from(this._form.querySelectorAll(setting.spanError));
+        this._inputList = Array.from(this._form.querySelectorAll(setting.inputSelector));
+    }
+
+    // метод, который будет снимать ошибки валидации
+    resetValidation () {
+        // Переберём полученные коллекции
+        this._spanList.forEach((spanElement) => {
+          // Скрываем сообщение об ошибке
+          spanElement.classList.remove(this._errorClass);
+          // Очистим ошибку
+          spanElement.textContent = '';
+        });
+        this._inputList.forEach((inputElement) => {
+          // скрываем красное подчеркивание
+          inputElement.classList.remove(this._inputErrorClass);
+        });
     }
 
     // метод принимает массив полей ввода
     // и элемент кнопки, состояние которой нужно менять
     _toggleButtonState () {
         // Если есть хотя бы один невалидный инпут
-        if (this._hasInvalidInput(this._inputList)) {
+        if (this._hasInvalidInput()) {
             // сделай кнопку неактивной
             this._buttonElement.setAttribute('disabled', '');
             this._buttonElement.classList.add(this._invalidButtonClass);
@@ -45,10 +63,10 @@ export default class FormValidator {
     
     // метод, который удаляет класс с ошибкой
     _hideInputError (inputElement) {
-        if (!this._errorElement) return;
         inputElement.classList.remove(this._inputErrorClass);
         this._errorElement.textContent = '';
         this._errorElement.classList.remove(this._errorClass);
+        if (!this._errorElement) return;
     }
 
     _isValid(inputElement) {
@@ -70,17 +88,17 @@ export default class FormValidator {
         this._inputList.forEach((inputElement) => {
             // каждому полю добавим обработчик события input
             inputElement.addEventListener('input', () => {
-            // Внутри колбэка вызовем isValid,
-            // передав ей форму и проверяемый элемент
-            this._isValid(inputElement);
-            // чтобы проверять его при изменении любого из полей
-            // Вызовем toggleButtonState и передадим ей массив полей и кнопку
-            this._toggleButtonState();
+                // Внутри колбэка вызовем isValid,
+                // передав ей форму и проверяемый элемент
+                this._isValid(inputElement);
+                // чтобы проверять его при изменении любого из полей
+                // Вызовем toggleButtonState и передадим ей массив полей и кнопку
+                this._toggleButtonState();
             });
         });
     }
 
     enableValidation() {
-        this._setEventListeners(this._form);
+        this._setEventListeners();
     }
 }

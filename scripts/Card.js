@@ -1,8 +1,9 @@
-import openPopup from './index.js';
+// import openImagePopup from './index.js';
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, openImagePopup, templateSelector) {
     this._name = data.name;
     this._link = data.link;
+    this._openImagePopup = openImagePopup;
     this._templateSelector = templateSelector; // записали селектор в приватное поле
   }
       
@@ -23,8 +24,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners(); // добавим обработчики
     // Добавим данные
-    this._element.querySelector('.card__image').src = `${this._link}`;
+    this._element.querySelector('.card__image').src = this._link;
     this._element.querySelector('.card__name').textContent = this._name;
+    this._element.querySelector('.card__image').alt = this._name;
     // Вернём элемент наружу
     return this._element;
   }
@@ -34,8 +36,8 @@ export default class Card {
   }
 
   _handleDelete() {
-    const currentListItem = this._element.closest('.card');
-    currentListItem.remove();
+    this._element.remove();
+    this._element = null;
   }
 
   _setEventListeners() {
@@ -52,10 +54,12 @@ export default class Card {
     });
 
     cardImageButton.addEventListener('click', () => {
-      const popupImage = document.querySelector('.popup_image_big');
-      document.querySelector('.popup__big-image').src = this._link;
-      document.querySelector('.popup__card-name').textContent = this._name;
-      openPopup(popupImage);
+      this._openImagePopup(document.querySelector('.popup__big-image').src = this._link, document.querySelector('.popup__card-name').textContent = this._name, document.querySelector('.popup__big-image').alt = this._name)
+      // const popupImage = document.querySelector('.popup_image_big');
+      // document.querySelector('.popup__big-image').src = this._link;
+      // document.querySelector('.popup__card-name').textContent = this._name;
+      // document.querySelector('.popup__big-image').alt = this._name;
+      // openPopup(popupImage);
     });
   }
 }

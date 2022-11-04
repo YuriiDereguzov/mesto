@@ -1,13 +1,14 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 
-const settings = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.button',
   invalidButtonClass: 'popup__button_invalid',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
+  errorClass: 'popup__input-error_active',
+  spanError: '.popup__input-error'
 }
 
 const popupEditProfile = document.querySelector('.popup_edit-profile');
@@ -27,44 +28,52 @@ const cardLinkInput = document.querySelector('.popup__input_card_image');
 const popupAddCard = document.querySelector('.popup_add_card');
 const popupAddCardOpen = document.querySelector('.profile__button-add');
 
-const list = document.querySelector(".cards");
+const cardsContainer = document.querySelector(".cards");
+const popups = document.querySelectorAll('.popup');
 
-export default function openPopup (popup) {
+const popupImage = document.querySelector('.popup_image_big');
+
+function openImagePopup () {
+  openPopup(popupImage);
+}
+
+function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
+  document.addEventListener("click", bindClosePopupByOverlayHandlers);
 }
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape); 
+  document.removeEventListener("click", bindClosePopupByOverlayHandlers);
 }
 
 // Обработчик «отправки» формы
-function submitEditProfileForm (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
 
   nameInput.textContent = textNameNew.value;
   jobInput.textContent = textJobNew.value;
   closePopup(popupEditProfile);
-  evt.target.reset();
 }
 
-function submitAddCardForm (evt) {
+function handleCardFormSubmit (evt) {
   evt.preventDefault();
 
-  const userNewCard = {
+  const cardData = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   }; 
 
-  list.prepend(createCard(userNewCard));
+  cardsContainer.prepend(createCard(cardData));
 
   closePopup(popupAddCard);
   evt.target.reset();
 }
 //
-function createCard (item) {
+function createCard (cardData) {
   // Создадим экземпляр карточки
-  const card = new Card(item, '.card-template');
+  const card = new Card(cardData, openImagePopup, '.card-template');
   // Создаём карточку и возвращаем наружу
   const cardElement = card.generateCard();
 
@@ -72,8 +81,8 @@ function createCard (item) {
 };
 //
 function renderInitialCards() {
-  const itemslist = items.map(createCard);
-	list.prepend(...itemslist);
+  const cardsList = initialCards.map(createCard);
+	cardsContainer.prepend(...cardsList);
 }
 
 // функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
@@ -86,9 +95,7 @@ function closeByEscape(evt) {
 } 
 
 // функция закрытия при нажатии на overlay и кнопку
-function closePopupOverlay () {
-  const popups = document.querySelectorAll('.popup')
-
+function bindClosePopupByOverlayHandlers () {
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')) {
@@ -101,43 +108,58 @@ function closePopupOverlay () {
   });
 }
 
-function deliteError (formElement) {
-  // Найдём все спаны и инпуты с указанным классом в DOM,
-  // сделаем из них массив методом Array.from
-  const spanList = Array.from(formElement.querySelectorAll('.popup__input-error'));
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  // Переберём полученные коллекции
-  spanList.forEach((spanElement) => {
-    // Скрываем сообщение об ошибке
-    spanElement.classList.remove('popup__input-error_active');
-    // Очистим ошибку
-    spanElement.textContent = '';
-  });
-  inputList.forEach((inputElement) => {
-    // скрываем красное подчеркивание
-    inputElement.classList.remove('popup__input_type_error');
-  });
+// function deliteError (formElement) {
+//   // Найдём все спаны и инпуты с указанным классом в DOM,
+//   // сделаем из них массив методом Array.from
+//   const spanList = Array.from(formElement.querySelectorAll('.popup__input-error'));
+//   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+//   // Переберём полученные коллекции
+//   spanList.forEach((spanElement) => {
+//     // Скрываем сообщение об ошибке
+//     spanElement.classList.remove('popup__input-error_active');
+//     // Очистим ошибку
+//     spanElement.textContent = '';
+//   });
+//   inputList.forEach((inputElement) => {
+//     // скрываем красное подчеркивание
+//     inputElement.classList.remove('popup__input_type_error');
+//   });
+// }
+
+function handleProfileFormData () {
+  textNameNew.value = nameInput.textContent;
+  textJobNew.value = jobInput.textContent;
+}
+
+function addValidatorForm (popup) {
+  const formValidatorAdd = new FormValidator (validationConfig, popup)
+  formValidatorAdd.enableValidation()
+  formValidatorAdd.resetValidation();
 }
 
 // Вызовем функцию
 renderInitialCards();
 
-document.addEventListener("click", closePopupOverlay);
+// document.addEventListener("click", bindClosePopupByOverlayHandlers);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElementProfile.addEventListener('submit', submitEditProfileForm); 
+formElementProfile.addEventListener('submit', handleProfileFormSubmit); 
 popupEditProfileOpen.addEventListener('click', () => {
-  const formValidatorAdd = new FormValidator (settings, popupEditProfile)
-  formValidatorAdd.enableValidation()
-  deliteError(popupEditProfile);
-  textNameNew.value = nameInput.textContent;
-  textJobNew.value = jobInput.textContent;
+  // const formValidatorAdd = new FormValidator (validationConfig, popupEditProfile)
+  // formValidatorAdd.enableValidation()
+  // // deliteError(popupEditProfile);
+  // formValidatorAdd.resetValidation();
+  addValidatorForm(popupEditProfile);
+  handleProfileFormData();
+  // textNameNew.value = nameInput.textContent;
+  // textJobNew.value = jobInput.textContent;
   openPopup(popupEditProfile);
 });
 
-formElementCard.addEventListener('submit', submitAddCardForm);
+formElementCard.addEventListener('submit', handleCardFormSubmit);
 popupAddCardOpen.addEventListener('click', () => {
-  const formValidatorAdd = new FormValidator (settings, popupAddCard)
-  formValidatorAdd.enableValidation()
+  addValidatorForm(popupAddCard);
+  // const formValidatorAdd = new FormValidator (validationConfig, popupAddCard)
+  // formValidatorAdd.enableValidation()
   openPopup(popupAddCard)
 });
