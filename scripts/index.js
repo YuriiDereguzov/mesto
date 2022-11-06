@@ -33,19 +33,25 @@ const popups = document.querySelectorAll('.popup');
 
 const popupImage = document.querySelector('.popup_image_big');
 
-function openImagePopup () {
+const formProfileValidatorAdd = new FormValidator (validationConfig, popupEditProfile);
+const formCardValidatorAdd = new FormValidator (validationConfig, popupAddCard);
+
+function openImagePopup (link, name) {
+  const imageBig = document.querySelector('.popup__big-image');
+
+  imageBig.src = link;
+  document.querySelector('.popup__card-name').textContent = name;
+  imageBig.alt = name;
   openPopup(popupImage);
 }
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
-  document.addEventListener("click", bindClosePopupByOverlayHandlers);
 }
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape); 
-  document.removeEventListener("click", bindClosePopupByOverlayHandlers);
 }
 
 // Обработчик «отправки» формы
@@ -70,7 +76,7 @@ function handleCardFormSubmit (evt) {
   closePopup(popupAddCard);
   evt.target.reset();
 }
-//
+
 function createCard (cardData) {
   // Создадим экземпляр карточки
   const card = new Card(cardData, openImagePopup, '.card-template');
@@ -79,10 +85,10 @@ function createCard (cardData) {
 
   return cardElement;
 };
-//
+
 function renderInitialCards() {
   const cardsList = initialCards.map(createCard);
-	cardsContainer.prepend(...cardsList);
+  cardsContainer.prepend(...cardsList);
 }
 
 // функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
@@ -108,58 +114,27 @@ function bindClosePopupByOverlayHandlers () {
   });
 }
 
-// function deliteError (formElement) {
-//   // Найдём все спаны и инпуты с указанным классом в DOM,
-//   // сделаем из них массив методом Array.from
-//   const spanList = Array.from(formElement.querySelectorAll('.popup__input-error'));
-//   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-//   // Переберём полученные коллекции
-//   spanList.forEach((spanElement) => {
-//     // Скрываем сообщение об ошибке
-//     spanElement.classList.remove('popup__input-error_active');
-//     // Очистим ошибку
-//     spanElement.textContent = '';
-//   });
-//   inputList.forEach((inputElement) => {
-//     // скрываем красное подчеркивание
-//     inputElement.classList.remove('popup__input_type_error');
-//   });
-// }
-
-function handleProfileFormData () {
+function setProfileFormInputsValues () {
   textNameNew.value = nameInput.textContent;
   textJobNew.value = jobInput.textContent;
 }
 
-function addValidatorForm (popup) {
-  const formValidatorAdd = new FormValidator (validationConfig, popup)
-  formValidatorAdd.enableValidation()
-  formValidatorAdd.resetValidation();
-}
-
 // Вызовем функцию
 renderInitialCards();
+bindClosePopupByOverlayHandlers();
 
-// document.addEventListener("click", bindClosePopupByOverlayHandlers);
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', handleProfileFormSubmit); 
 popupEditProfileOpen.addEventListener('click', () => {
-  // const formValidatorAdd = new FormValidator (validationConfig, popupEditProfile)
-  // formValidatorAdd.enableValidation()
-  // // deliteError(popupEditProfile);
-  // formValidatorAdd.resetValidation();
-  addValidatorForm(popupEditProfile);
-  handleProfileFormData();
-  // textNameNew.value = nameInput.textContent;
-  // textJobNew.value = jobInput.textContent;
+  formProfileValidatorAdd.enableValidation();
+  formProfileValidatorAdd.resetValidation();
+  setProfileFormInputsValues();
   openPopup(popupEditProfile);
 });
 
 formElementCard.addEventListener('submit', handleCardFormSubmit);
 popupAddCardOpen.addEventListener('click', () => {
-  addValidatorForm(popupAddCard);
-  // const formValidatorAdd = new FormValidator (validationConfig, popupAddCard)
-  // formValidatorAdd.enableValidation()
+  formCardValidatorAdd.enableValidation();
   openPopup(popupAddCard)
 });

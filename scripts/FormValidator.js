@@ -1,11 +1,9 @@
 export default class FormValidator {
     constructor(setting, form) {
         this._form = form;
-        // this._inputSelector = setting.inputSelector;
         this._inputErrorClass = setting.inputErrorClass;
         this._errorClass = setting.errorClass;
         this._invalidButtonClass = setting.invalidButtonClass;
-        // this._submitButtonSelector = setting.submitButtonSelector;
         this._buttonElement = this._form.querySelector(setting.submitButtonSelector);
         // Найдём все спаны и инпуты с указанным классом в DOM,
         // сделаем из них массив методом Array.from
@@ -66,7 +64,6 @@ export default class FormValidator {
         inputElement.classList.remove(this._inputErrorClass);
         this._errorElement.textContent = '';
         this._errorElement.classList.remove(this._errorClass);
-        if (!this._errorElement) return;
     }
 
     _isValid(inputElement) {

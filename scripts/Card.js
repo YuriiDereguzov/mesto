@@ -1,4 +1,3 @@
-// import openImagePopup from './index.js';
 export default class Card {
   constructor(data, openImagePopup, templateSelector) {
     this._name = data.name;
@@ -54,12 +53,8 @@ export default class Card {
     });
 
     cardImageButton.addEventListener('click', () => {
-      this._openImagePopup(document.querySelector('.popup__big-image').src = this._link, document.querySelector('.popup__card-name').textContent = this._name, document.querySelector('.popup__big-image').alt = this._name)
-      // const popupImage = document.querySelector('.popup_image_big');
-      // document.querySelector('.popup__big-image').src = this._link;
-      // document.querySelector('.popup__card-name').textContent = this._name;
-      // document.querySelector('.popup__big-image').alt = this._name;
-      // openPopup(popupImage);
+      this._openImagePopup(this._link, this._name)
+      // this._openImagePopup(document.querySelector('.popup__big-image').src = this._link, document.querySelector('.popup__card-name').textContent = this._name, document.querySelector('.popup__big-image').alt = this._name);
     });
   }
 }
