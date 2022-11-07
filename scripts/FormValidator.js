@@ -26,18 +26,28 @@ export default class FormValidator {
         });
     }
 
+    // сделай кнопку неактивной
+    inactiveButtonSubmit () {
+        this._buttonElement.setAttribute('disabled', '');
+        this._buttonElement.classList.add(this._invalidButtonClass);
+    }
+
+    // сделай кнопку активной
+    _activeButtonSubmit() {
+        this._buttonElement.removeAttribute('disabled');
+        this._buttonElement.classList.remove(this._invalidButtonClass);
+    }
+
     // метод принимает массив полей ввода
     // и элемент кнопки, состояние которой нужно менять
     _toggleButtonState () {
         // Если есть хотя бы один невалидный инпут
         if (this._hasInvalidInput()) {
             // сделай кнопку неактивной
-            this._buttonElement.setAttribute('disabled', '');
-            this._buttonElement.classList.add(this._invalidButtonClass);
+            this.inactiveButtonSubmit();
         } else {
             // иначе сделай кнопку активной
-            this._buttonElement.removeAttribute('disabled');
-            this._buttonElement.classList.remove(this._invalidButtonClass);
+            this._activeButtonSubmit();
         }
     }
 

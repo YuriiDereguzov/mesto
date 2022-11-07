@@ -53,8 +53,7 @@ export default class Card {
     });
 
     cardImageButton.addEventListener('click', () => {
-      this._openImagePopup(this._link, this._name)
-      // this._openImagePopup(document.querySelector('.popup__big-image').src = this._link, document.querySelector('.popup__card-name').textContent = this._name, document.querySelector('.popup__big-image').alt = this._name);
+      this._openImagePopup(this._link, this._name);
     });
   }
 }
