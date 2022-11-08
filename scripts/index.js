@@ -35,8 +35,8 @@ const popupImage = document.querySelector('.popup_image_big');
 const imageBig = document.querySelector('.popup__big-image');
 const cardName = document.querySelector('.popup__card-name');
 
-const formProfileValidatorAdd = new FormValidator (validationConfig, popupEditProfile);
-const formCardValidatorAdd = new FormValidator (validationConfig, popupAddCard);
+const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
+const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 
 function openImagePopup (link, name) {
   imageBig.src = link;
@@ -75,7 +75,7 @@ function handleCardFormSubmit (evt) {
 
   closePopup(popupAddCard);
   evt.target.reset();
-  formCardValidatorAdd.inactiveButtonSubmit();
+  formCardValidator.disableSubmitButton();
 }
 
 function createCard (cardData) {
@@ -123,14 +123,14 @@ function setProfileFormInputsValues () {
 // Вызовем функцию
 renderInitialCards();
 bindClosePopupByOverlayHandlers();
-formProfileValidatorAdd.enableValidation();
-formCardValidatorAdd.enableValidation();
+formProfileValidator.enableValidation();
+formCardValidator.enableValidation();
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElementProfile.addEventListener('submit', handleProfileFormSubmit); 
 popupEditProfileOpen.addEventListener('click', () => {
-  formProfileValidatorAdd.resetValidation();
+  formProfileValidator.resetValidation();
   setProfileFormInputsValues();
   openPopup(popupEditProfile);
 });

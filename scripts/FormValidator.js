@@ -27,13 +27,13 @@ export default class FormValidator {
     }
 
     // сделай кнопку неактивной
-    inactiveButtonSubmit () {
+    disableSubmitButton () {
         this._buttonElement.setAttribute('disabled', '');
         this._buttonElement.classList.add(this._invalidButtonClass);
     }
 
     // сделай кнопку активной
-    _activeButtonSubmit() {
+    _enableSubmitButton() {
         this._buttonElement.removeAttribute('disabled');
         this._buttonElement.classList.remove(this._invalidButtonClass);
     }
@@ -44,10 +44,10 @@ export default class FormValidator {
         // Если есть хотя бы один невалидный инпут
         if (this._hasInvalidInput()) {
             // сделай кнопку неактивной
-            this.inactiveButtonSubmit();
+            this.disableSubmitButton();
         } else {
             // иначе сделай кнопку активной
-            this._activeButtonSubmit();
+            this._enableSubmitButton();
         }
     }
 
