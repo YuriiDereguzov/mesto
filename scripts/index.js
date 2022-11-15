@@ -1,5 +1,6 @@
+import { initialCards } from './constants.js';
 import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+import Section from './Section.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -38,7 +39,9 @@ const cardName = document.querySelector('.popup__card-name');
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 
-function openImagePopup (link, name) {
+const CardList = new Section({ data: initialCards }, cardsContainer);
+
+export function openImagePopup (link, name) {
   imageBig.src = link;
   cardName.textContent = name;
   imageBig.alt = name;
@@ -71,25 +74,11 @@ function handleCardFormSubmit (evt) {
     link: cardLinkInput.value,
   }; 
 
-  cardsContainer.prepend(createCard(cardData));
+  cardsContainer.prepend(CardList.createCard(cardData));
 
   closePopup(popupAddCard);
   evt.target.reset();
   formCardValidator.disableSubmitButton();
-}
-
-function createCard (cardData) {
-  // Создадим экземпляр карточки
-  const card = new Card(cardData, openImagePopup, '.card-template');
-  // Создаём карточку и возвращаем наружу
-  const cardElement = card.generateCard();
-
-  return cardElement;
-};
-
-function renderInitialCards() {
-  const cardsList = initialCards.map(createCard);
-  cardsContainer.prepend(...cardsList);
 }
 
 // функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
@@ -121,10 +110,12 @@ function setProfileFormInputsValues () {
 }
 
 // Вызовем функцию
-renderInitialCards();
+// renderInitialCards();
 bindClosePopupByOverlayHandlers();
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
+
+CardList.renderer();
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
