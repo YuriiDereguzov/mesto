@@ -1,6 +1,7 @@
 import { initialCards } from './constants.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -30,7 +31,7 @@ const popupAddCard = document.querySelector('.popup_add_card');
 const popupAddCardOpen = document.querySelector('.profile__button-add');
 
 const cardsContainer = document.querySelector(".cards");
-const popups = document.querySelectorAll('.popup');
+// const popups = document.querySelectorAll('.popup');
 
 const popupImage = document.querySelector('.popup_image_big');
 const imageBig = document.querySelector('.popup__big-image');
@@ -39,7 +40,7 @@ const cardName = document.querySelector('.popup__card-name');
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 
-const CardList = new Section({ data: initialCards }, cardsContainer);
+const cardList = new Section({ data: initialCards }, cardsContainer);
 
 export function openImagePopup (link, name) {
   imageBig.src = link;
@@ -48,14 +49,14 @@ export function openImagePopup (link, name) {
   openPopup(popupImage);
 }
 
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
-function closePopup (popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEscape); 
-}
+// function openPopup (popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closeByEscape);
+// }
+// function closePopup (popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', closeByEscape); 
+// }
 
 // Обработчик «отправки» формы
 function handleProfileFormSubmit (evt) {
@@ -74,35 +75,35 @@ function handleCardFormSubmit (evt) {
     link: cardLinkInput.value,
   }; 
 
-  cardsContainer.prepend(CardList.createCard(cardData));
+  cardsContainer.prepend(cardList.createCard(cardData));
 
   closePopup(popupAddCard);
   evt.target.reset();
   formCardValidator.disableSubmitButton();
 }
 
-// функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened') // нашли открытый попап
-    // закрыли попап
-    closePopup(openedPopup);
-  }
-} 
+// // функция закрытия при нажатии на Esc: если значение нажатой кнопки Esc, то закрываем открытый попап.
+// function closeByEscape(evt) {
+//   if (evt.key === 'Escape') {
+//     const openedPopup = document.querySelector('.popup_opened') // нашли открытый попап
+//     // закрыли попап
+//     closePopup(openedPopup);
+//   }
+// } 
 
-// функция закрытия при нажатии на overlay и кнопку
-function bindClosePopupByOverlayHandlers () {
-  popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-      if (evt.target.classList.contains('popup_opened')) {
-        closePopup(popup);
-      }
-      if (evt.target.classList.contains('popup__close')) {
-        closePopup(popup);
-      }
-    });
-  });
-}
+// // функция закрытия при нажатии на overlay и кнопку
+// function bindClosePopupByOverlayHandlers () {
+//   popups.forEach((popup) => {
+//     popup.addEventListener('mousedown', (evt) => {
+//       if (evt.target.classList.contains('popup_opened')) {
+//         closePopup(popup);
+//       }
+//       if (evt.target.classList.contains('popup__close')) {
+//         closePopup(popup);
+//       }
+//     });
+//   });
+// }
 
 function setProfileFormInputsValues () {
   textNameNew.value = nameInput.textContent;
@@ -111,11 +112,11 @@ function setProfileFormInputsValues () {
 
 // Вызовем функцию
 // renderInitialCards();
-bindClosePopupByOverlayHandlers();
+// bindClosePopupByOverlayHandlers();
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
 
-CardList.renderer();
+cardList.renderer();
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
