@@ -13,12 +13,14 @@ export default class Popup {
         document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
     }
 
+    // метод закрытия при нажатии на Esc
     _handleEscClose(evt) {
         if (evt.key === 'Escape') {
             this.close();
         }
     }
 
+    // метод который добавляет слушатель клика на overlay и кнопку
     setEventListeners() {
         this._container.addEventListener('mousedown', (evt) => {
             if (evt.target.classList.contains('popup_opened')) {
