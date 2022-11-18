@@ -1,8 +1,8 @@
 export default class Card {
-  constructor(data, openImagePopup, templateSelector) {
+  constructor(data, { handleCardClick }, templateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._openImagePopup = openImagePopup;
+    this._openImagePopup = handleCardClick;
     this._templateSelector = templateSelector; // записали селектор в приватное поле
   }
       

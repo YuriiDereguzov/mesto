@@ -22,7 +22,7 @@ const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 const cardList = new Section({ data: initialCards }, cardsContainer);
 const popupCard = new Popup (popupAddCard);
 const popupProfile = new Popup (popupEditProfile);
-const popupWithImage = new PopupWithImage(popupImage);
+export const popupWithImage = new PopupWithImage(popupImage);
 const userInfo = new UserInfo ({ name: '.profile__name', job: '.profile__job' });
 const popupEdProfile = new PopupWithForm(
   popupEditProfile,
@@ -48,10 +48,6 @@ const popupCardAdd = new PopupWithForm(
   }
 ); 
 
-export function openImagePopup (link, name) {
-  popupWithImage.open(link, name);
-}
-
 // Вызоваем функции
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
@@ -66,5 +62,4 @@ popupEditProfileOpen.addEventListener('click', () => {
   userInfo.getUserInfo();
   popupProfile.open();
 });
-
 popupAddCardOpen.addEventListener('click', () => popupCard.open());

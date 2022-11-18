@@ -1,5 +1,5 @@
 import Card from './Card.js';
-import { openImagePopup } from '../scripts/index.js';
+import { popupWithImage } from '../scripts/index.js';
 
 export default class Section {
     constructor({ data }, selector) {
@@ -9,7 +9,14 @@ export default class Section {
 
     createCard(cardData) {
         // Создадим экземпляр карточки
-        const card = new Card(cardData, openImagePopup, '.card-template');
+        const card = new Card(
+            cardData,
+            {
+                handleCardClick: (link, name) => {
+                    popupWithImage.open(link, name);
+                }
+            },
+            '.card-template');
         // Создаём карточку и возвращаем наружу
         const cardElement = card.generateCard();
         // Вернем готовую карточку
