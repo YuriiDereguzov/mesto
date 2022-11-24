@@ -1,5 +1,5 @@
 import Card from './Card.js';
-import { popupWithImage } from '../scripts/index.js';
+import { popupWithImage } from '../pages/index.js';
 
 export default class Section {
     constructor({ data }, selector) {
