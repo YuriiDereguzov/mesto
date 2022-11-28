@@ -22,10 +22,11 @@ export default class Card {
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._setEventListeners(); // добавим обработчики
+    const cardImage = this._element.querySelector('.card__image');
     // Добавим данные
-    this._element.querySelector('.card__image').src = this._link;
+    cardImage.src = this._link;
     this._element.querySelector('.card__name').textContent = this._name;
-    this._element.querySelector('.card__image').alt = this._name;
+    cardImage.alt = this._name;
     // Вернём элемент наружу
     return this._element;
   }

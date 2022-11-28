@@ -76,7 +76,7 @@ export default class FormValidator {
         this._errorElement.classList.remove(this._errorClass);
     }
 
-    _isValid(inputElement) {
+    _toggleInputErrorState(inputElement) {
         // Находим элемент ошибки
         this._errorElement = this._form.querySelector(`.${inputElement.id}-error`);
 
@@ -95,9 +95,9 @@ export default class FormValidator {
         this._inputList.forEach((inputElement) => {
             // каждому полю добавим обработчик события input
             inputElement.addEventListener('input', () => {
-                // Внутри колбэка вызовем isValid,
+                // Внутри колбэка вызовем toggleInputErrorState,
                 // передав ей форму и проверяемый элемент
-                this._isValid(inputElement);
+                this._toggleInputErrorState(inputElement);
                 // чтобы проверять его при изменении любого из полей
                 // Вызовем toggleButtonState и передадим ей массив полей и кнопку
                 this._toggleButtonState();

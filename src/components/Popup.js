@@ -23,10 +23,7 @@ export default class Popup {
     // метод который добавляет слушатель клика на overlay и кнопку
     setEventListeners() {
         this._container.addEventListener('mousedown', (evt) => {
-            if (evt.target.classList.contains('popup_opened')) {
-                this.close();
-            }
-            if (evt.target.classList.contains('popup__close')) {
+            if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
                 this.close();
             }
         });

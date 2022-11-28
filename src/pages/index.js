@@ -31,6 +31,7 @@ const popupEdProfile = new PopupWithForm(
   {
     handleFormSubmit: (items) => {
       userInfo.setUserInfo(items.name, items.job);
+      popupEdProfile.close();
     }
   }
 ); 
@@ -45,6 +46,7 @@ const popupCardAdd = new PopupWithForm(
       }; 
       cardsContainer.prepend(cardList.createCard(cardData));
       formCardValidator.disableSubmitButton();
+      popupCardAdd.close();
     }
   }
 ); 
