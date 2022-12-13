@@ -21,8 +21,10 @@ import UserInfo from '../components/UserInfo.js';
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 const cardList = new Section({ data: initialCards }, cardsContainer);
-const popupCard = new Popup (popupAddCard);
-const popupProfile = new Popup (popupEditProfile);
+// const popupCard = new Popup (popupAddCard);
+// const popupProfile = new Popup (popupEditProfile);
+const popupCard = new Popup ('popup_add_card');
+const popupProfile = new Popup ('popup_edit-profile');
 export const popupWithImage = new PopupWithImage(popupImage);
 const userInfo = new UserInfo ({ name: '.profile__name', job: '.profile__job' });
 const popupEdProfile = new PopupWithForm(

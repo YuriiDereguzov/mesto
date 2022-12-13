@@ -1,20 +1,36 @@
 export default class Popup {
     constructor(selector) {
-        this._container = selector;
+        this._container = document.querySelector(selector);
     }
 
+    // open() {
+    //     this._container.classList.add('popup_opened');
+    //     document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+    // }
+
+    // close() {
+    //     this._container.classList.remove('popup_opened');
+    //     document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
+    // }
+
+    // // метод закрытия при нажатии на Esc
+    // _handleEscClose(evt) {
+    //     if (evt.key === 'Escape') {
+    //         this.close();
+    //     }
+    // }
     open() {
         this._container.classList.add('popup_opened');
-        document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
+        document.addEventListener('keydown', this._handleEscClose);
     }
 
     close() {
         this._container.classList.remove('popup_opened');
-        document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
+        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     // метод закрытия при нажатии на Esc
-    _handleEscClose(evt) {
+    _handleEscClose = (evt) => {
         if (evt.key === 'Escape') {
             this.close();
         }
