@@ -1,12 +1,12 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "https://yuriidereguzov.github.io/mesto/index.html",
+  "description": "Место - Россия, карточки красивых мест страны",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "rimraf dist && webpack --mode development",
-    "start": "webpack serve --open",
+    "build": "rimraf dist && webpack --mode development",
+    "dev": "webpack serve --open",
     "predeploy": "npm run build:dev",
     "deploy": "main -d dist"
   },

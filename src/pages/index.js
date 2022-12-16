@@ -2,6 +2,8 @@ import './index.css';
 import {
   validationConfig,
   initialCards,
+} from '../utils/constants.js';
+import {
   popupEditProfile,
   popupEditProfileOpen,
   formElementProfile,
@@ -12,7 +14,7 @@ import {
   popupImage,
   cardName,
   imageBig,
-} from '../utils/constants.js';
+} from '../utils/elements.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
@@ -21,8 +23,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card';
 
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!! //
 function createCard(cardData) {
   // Создадим экземпляр карточки
   const card = new Card(
@@ -45,30 +45,28 @@ function renderCard(cardData) {
 }
 
 const section = new Section({ items: initialCards, renderer: renderCard }, '.cards')
-section.renderItems()
-// !!!!!!!!!!!!!!!!!!!!!!!!!!! //
-
+section.renderInitialItems()
 
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 // const cardList = new Section({ data: initialCards }, cardsContainer);
 // const popupCard = new Popup (popupAddCard);
 // const popupProfile = new Popup (popupEditProfile);
-const popupCard = new Popup ('.popup_add_card');
-const popupProfile = new Popup ('.popup_edit-profile');
+// const popupCard = new Popup ('.popup_add_card');
+// const popupProfile = new Popup ('.popup_edit-profile');
 export const popupWithImage = new PopupWithImage('.popup_image_big');
-const userInfo = new UserInfo ({ name: '.profile__name', job: '.profile__job' });
-const popupEdProfile = new PopupWithForm(
+const userInfo = new UserInfo ({ nameSelector: '.profile__name', jobSelector: '.profile__job' });
+const formPopupEditProfile = new PopupWithForm(
   '.popup_edit-profile',
   formElementProfile,
   {
     handleFormSubmit: (items) => {
       userInfo.setUserInfo(items.name, items.job);
-      popupEdProfile.close();
+      formPopupEditProfile.close();
     }
   }
 ); 
-const popupCardAdd = new PopupWithForm(
+const formPopupAddCard = new PopupWithForm(
   '.popup_add_card',
   formElementCard,
   {
@@ -81,7 +79,7 @@ const popupCardAdd = new PopupWithForm(
       renderCard(cardData);
 
       formCardValidator.disableSubmitButton();
-      popupCardAdd.close();
+      formPopupAddCard.close();
     }
   }
 ); 
@@ -91,13 +89,13 @@ formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
 // cardList.renderer();
 popupWithImage.setEventListeners();
-popupCardAdd.setEventListeners();
-popupEdProfile.setEventListeners();
+formPopupAddCard.setEventListeners();
+formPopupEditProfile.setEventListeners();
 
 // Вешаем обработчики
 popupEditProfileOpen.addEventListener('click', () => {
   formProfileValidator.resetValidation();
   userInfo.getUserInfo();
-  popupProfile.open();
+  formPopupEditProfile.open();
 });
-popupAddCardOpen.addEventListener('click', () => popupCard.open());
+popupAddCardOpen.addEventListener('click', () => formPopupAddCard.open());
