@@ -58,7 +58,6 @@ export const popupWithImage = new PopupWithImage('.popup_image_big');
 const userInfo = new UserInfo ({ nameSelector: '.profile__name', jobSelector: '.profile__job' });
 const formPopupEditProfile = new PopupWithForm(
   '.popup_edit-profile',
-  formElementProfile,
   {
     handleFormSubmit: (items) => {
       userInfo.setUserInfo(items.name, items.job);
@@ -68,7 +67,6 @@ const formPopupEditProfile = new PopupWithForm(
 ); 
 const formPopupAddCard = new PopupWithForm(
   '.popup_add_card',
-  formElementCard,
   {
     handleFormSubmit: (items) => {
       const cardData = {
@@ -78,7 +76,6 @@ const formPopupAddCard = new PopupWithForm(
       // cardsContainer.prepend(cardList.createCard(cardData));
       renderCard(cardData);
 
-      formCardValidator.disableSubmitButton();
       formPopupAddCard.close();
     }
   }
@@ -98,4 +95,7 @@ popupEditProfileOpen.addEventListener('click', () => {
   userInfo.getUserInfo();
   formPopupEditProfile.open();
 });
-popupAddCardOpen.addEventListener('click', () => formPopupAddCard.open());
+popupAddCardOpen.addEventListener('click', () => {
+  formPopupAddCard.open();
+  formCardValidator.disableSubmitButton();
+});
