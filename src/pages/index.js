@@ -8,6 +8,8 @@ import {
   popupEditProfileOpen,
   popupAddCard,
   popupAddCardOpen,
+  textNameNew,
+  textJobNew
 } from '../utils/elements.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -78,7 +80,9 @@ formPopupEditProfile.setEventListeners();
 // Вешаем обработчики
 popupEditProfileOpen.addEventListener('click', () => {
   formProfileValidator.resetValidation();
-  userInfo.getUserInfo();
+  const {name, job} = userInfo.getUserInfo();
+  textNameNew.value = name;
+  textJobNew.value = job;
   formPopupEditProfile.open();
 });
 popupAddCardOpen.addEventListener('click', () => {
