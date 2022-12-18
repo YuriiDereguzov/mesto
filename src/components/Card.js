@@ -22,17 +22,17 @@ export default class Card {
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
     this._setEventListeners(); // добавим обработчики
-    const cardImage = this._element.querySelector('.card__image');
+    // const cardImage = this._element.querySelector('.card__image');
     // Добавим данные
-    cardImage.src = this._link;
-    this._element.querySelector('.card__name').textContent = this._name;
-    cardImage.alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardName.textContent = this._name;
+    this._cardImage.alt = this._name;
     // Вернём элемент наружу
     return this._element;
   }
 
   _handleLike() {
-    this._element.querySelector('.card__like').classList.toggle('card__like_active');
+    this._likeElement.classList.toggle('card__like_active');
   }
 
   _handleDelete() {
@@ -41,19 +41,21 @@ export default class Card {
   }
 
   _setEventListeners() {
-    const cardImageButton = this._element.querySelector('.card__image-btn');
-    const likeButton = this._element.querySelector('.card__like');
-    const deleteButton = this._element.querySelector('.card__delete');
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardName = this._element.querySelector('.card__name');
+    this._cardImageButton = this._element.querySelector('.card__image-btn');
+    this._likeElement = this._element.querySelector('.card__like');
+    this._deleteElement = this._element.querySelector('.card__delete');
 
-    likeButton.addEventListener('click', () => {
+    this._likeElement.addEventListener('click', () => {
       this._handleLike();
     });
 
-    deleteButton.addEventListener('click', () => {
+    this._deleteElement.addEventListener('click', () => {
       this._handleDelete();
     });
 
-    cardImageButton.addEventListener('click', () => {
+    this._cardImageButton.addEventListener('click', () => {
       this._openImagePopup(this._link, this._name);
     });
   }
