@@ -6,18 +6,11 @@ import {
 import {
   popupEditProfile,
   popupEditProfileOpen,
-  formElementProfile,
-  formElementCard,
   popupAddCard,
   popupAddCardOpen,
-  cardsContainer,
-  popupImage,
-  cardName,
-  imageBig,
 } from '../utils/elements.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
@@ -49,11 +42,6 @@ section.renderInitialItems()
 
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
-// const cardList = new Section({ data: initialCards }, cardsContainer);
-// const popupCard = new Popup (popupAddCard);
-// const popupProfile = new Popup (popupEditProfile);
-// const popupCard = new Popup ('.popup_add_card');
-// const popupProfile = new Popup ('.popup_edit-profile');
 export const popupWithImage = new PopupWithImage('.popup_image_big');
 const userInfo = new UserInfo ({ nameSelector: '.profile__name', jobSelector: '.profile__job' });
 const formPopupEditProfile = new PopupWithForm(
@@ -73,7 +61,6 @@ const formPopupAddCard = new PopupWithForm(
         name: items.name,
         link: items.link,
       }; 
-      // cardsContainer.prepend(cardList.createCard(cardData));
       renderCard(cardData);
 
       formPopupAddCard.close();
@@ -84,7 +71,6 @@ const formPopupAddCard = new PopupWithForm(
 // Вызоваем функции
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
-// cardList.renderer();
 popupWithImage.setEventListeners();
 formPopupAddCard.setEventListeners();
 formPopupEditProfile.setEventListeners();
