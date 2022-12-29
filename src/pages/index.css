@@ -50,6 +50,10 @@
 @import url(../blocks/popup/_image/popup_image_big.css);
 
 @import url(../blocks/popup/__container/_image/popup__container_image_big.css);
+@import url(../blocks/popup/__container/_delete/popup__container_delete_card.css);
+
+@import url(../blocks/popup/__title/_delete/popup__title_delete_card.css);
+
 
 @import url(../blocks/card/__like/_active/card__like_active.css);
 
