@@ -2,5 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 21px 31px;
+    /* padding: 25px 21px 31px; */
+
+    text-align: center;
+    padding: 22px 21px;
 }
