@@ -80,6 +80,18 @@
         </div>
     </section>
 
+    <section class="popup popup_edit_avatar">
+        <div class="popup__container">
+            <form name="avatarForm" class="popup__form popup__form_edit_avatar" novalidate>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <input type="url" id="link" name="link" class="popup__input popup__input_avatar_image" required placeholder="Ссылка на картинку">
+                <span class="link-error popup__input-error"></span>
+                <button type="submit" class="button popup__button-save" aria-label="Сохранить">Сохранить</button>
+            </form>
+            <button type="button" class="popup__close popup__close-button popup__close-button_edit_avatar" aria-label="Закрыть"></button>
+        </div>
+    </section>
+
     <template class="card-template">
         <div class="card">
             <button class="card__image-btn"><img class="card__image" src="#" alt=""></button>
