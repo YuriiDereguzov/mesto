@@ -11,7 +11,8 @@ export default class Section {
     }
    
     addItem(element) {
-        this._container.prepend(element);
+        // this._container.prepend(element);
+        this._container.append(element);
     }
 }
 // import Card from './Card.js';
