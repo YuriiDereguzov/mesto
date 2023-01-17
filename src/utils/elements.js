@@ -16,3 +16,6 @@ export const popupAddCard = document.querySelector('.popup_add_card');
 export const popupAddCardOpen = document.querySelector('.profile__button-add');
   
 export const popupImage = document.querySelector('.popup_image_big');
+
+export const popupEditAvatar = document.querySelector('.popup_edit_avatar');
+export const popupEditAvatarOpen = document.querySelector('.profile__avatar-edit-btn');
