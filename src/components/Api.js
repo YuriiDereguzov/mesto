@@ -9,7 +9,7 @@ class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
   
@@ -17,7 +17,7 @@ class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
   
@@ -31,7 +31,7 @@ class Api {
                 about
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
 
@@ -44,7 +44,7 @@ class Api {
                 link
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
 
@@ -53,7 +53,7 @@ class Api {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
 
@@ -62,7 +62,7 @@ class Api {
             method: "PUT",
             headers: this._headers,
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
 
@@ -71,7 +71,7 @@ class Api {
             method: "DELETE",
             headers: this._headers,
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
 
@@ -83,7 +83,7 @@ class Api {
                 avatar
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
         .catch(console.log)
     }
   }

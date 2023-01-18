@@ -77,11 +77,11 @@ function renderLoading(isLoading) {
   }
 }
 
+export const popupWithImage = new PopupWithImage('.popup_image_big');
 const section = new Section({ items: []/* initialCards */, renderer: renderCard }, '.cards')
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 const formAvatarValidator = new FormValidator (validationConfig, popupEditAvatar);
-export const popupWithImage = new PopupWithImage('.popup_image_big');
 const userInfo = new UserInfo ({ nameSelector: '.profile__name', jobSelector: '.profile__job', avatarSelector: '.profile__avatar'});
 const formPopupEditProfile = new PopupWithForm(
   '.popup_edit-profile',
@@ -93,6 +93,9 @@ const formPopupEditProfile = new PopupWithForm(
           userInfo.setUserInfo(items.name, items.job);
           renderLoading(false);
           formPopupEditProfile.close();
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
         // .finally(() => {
         //   // вызов renderLoading
@@ -121,6 +124,9 @@ const formPopupAddCard = new PopupWithForm(
           section.addItem(card);
           renderLoading(false);
           formPopupAddCard.close();
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
         // .finally(() => {
         //   // вызов renderLoading
@@ -160,6 +166,9 @@ const formPopupEditAvatar = new PopupWithForm(
           userInfo.setUserAvatar(items.link);
           renderLoading(false);
           formPopupEditAvatar.close();
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
         // .finally(() => {
         //   // вызов renderLoading
