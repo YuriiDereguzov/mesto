@@ -101,8 +101,6 @@ const formPopupEditProfile = new PopupWithForm(
         //   // вызов renderLoading
         //   renderLoading(false);
         // })
-      // userInfo.setUserInfo(items.name, items.job);
-      // formPopupEditProfile.close();
     }
   }
 ); 
@@ -132,13 +130,6 @@ const formPopupAddCard = new PopupWithForm(
         //   // вызов renderLoading
         //   renderLoading(false);
         // })
-      // const cardData = {
-      //   name: items.name,
-      //   link: items.link,
-      // }; 
-      // renderCard(cardData);
-
-      // formPopupAddCard.close();
     }
   }
 ); 
