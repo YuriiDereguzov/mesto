@@ -41,17 +41,10 @@ function createCard(cardData) {
             });
           },
           handleLikeClick: (id) => {
-            if(card.isLiked()) {
-              api.deleteLike(id)
-                .then(res => {
+            api.toggleLike(id, card.isLiked())
+              .then(res => {
                   card.setLikes(res.likes);
-                });
-            } else {
-              api.addLike(id)
-                .then(res => {
-                  card.setLikes(res.likes);
-                });
-              }
+              });
           }
       },
       '.card-template',
