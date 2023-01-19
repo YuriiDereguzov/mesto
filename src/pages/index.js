@@ -19,6 +19,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import { api } from '../components/Api.js';
 let userId
 
@@ -126,16 +127,10 @@ const formPopupAddCard = new PopupWithForm(
     }
   }
 ); 
-const deletePopup = new PopupWithForm(
+const deletePopup = new PopupWithConfirmation(
   '.popup_delete_card',
   {
-    handleFormSubmit: () => {
-      // api.deleteCard(id)
-      //   .then(res => {
-      //     console.log('res', res)
-      //   })
-      // console.log('delete!!!')
-    }
+    handleFormSubmit: () => {}
   }
 ); 
 const formPopupEditAvatar = new PopupWithForm(
