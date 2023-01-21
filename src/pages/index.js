@@ -63,7 +63,15 @@ function createCard(cardData) {
 }
 
 function renderCard(cardData) {
-  const cardElement = createCard(cardData); // createCard просто создает карточку и возвращает её html представление
+  // createCard просто создает карточку и возвращает её html представление
+  const cardElement = createCard({
+    name: cardData.name,
+    link: cardData.link,
+    likes: cardData.likes,
+    id: cardData._id,
+    userId: userId,
+    ownerId: cardData.owner._id
+  });
   section.addItem(cardElement);
 }
 
@@ -100,15 +108,7 @@ const formPopupAddCard = new PopupWithForm(
       formPopupAddCard.renderLoading(true);
       api.addCard(items.name, items.link)
         .then(res => {
-          const card = createCard({
-            name: res.name,
-            link: res.link,
-            likes: res.likes,
-            id: res._id,
-            userId: userId,
-            ownerId: res.owner._id
-          });
-          section.addItem(card);
+          renderCard(res);
           formPopupAddCard.close();
         })
         .catch((err) => {
@@ -132,10 +132,8 @@ const formPopupEditAvatar = new PopupWithForm(
   {
     handleFormSubmit: (items) => {
       formPopupEditAvatar.renderLoading(true);
-      // console.log(items)
       api.editAvatar(items.link)
         .then(res => {
-          // console.log('ответ', res)
           userInfo.setUserAvatar(items.link);
           formPopupEditAvatar.close();
         })
@@ -156,17 +154,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userInfo.setUserAvatar(userData.avatar);
     userId = userData._id;
 
-    cardList.forEach(data => {
-      const card = createCard({
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      });
-      section.addItem(card);
-    });
+    section.renderInitialItems(cardList);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
@@ -180,7 +168,6 @@ formPopupAddCard.setEventListeners();
 formPopupEditProfile.setEventListeners();
 formPopupEditAvatar.setEventListeners();
 deletePopup.setEventListeners();
-// section.renderInitialItems(initialCards);
 
 // Вешаем обработчики
 popupEditProfileOpen.addEventListener('click', () => {
