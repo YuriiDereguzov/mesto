@@ -84,7 +84,7 @@ const formPopupEditProfile = new PopupWithForm(
           formPopupEditProfile.close();
         })
         .catch((err) => {
-          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+          console.log(`Ошибка при обновлении информации о пользователе: ${err}`); // выведем ошибку в консоль
         })
         .finally(() => {
           // вызов renderLoading
@@ -112,7 +112,7 @@ const formPopupAddCard = new PopupWithForm(
           formPopupAddCard.close();
         })
         .catch((err) => {
-          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+          console.log(`Ошибка при добавлении новой карточки: ${err}`); // выведем ошибку в консоль
         })
         .finally(() => {
           // вызов renderLoading
@@ -140,7 +140,7 @@ const formPopupEditAvatar = new PopupWithForm(
           formPopupEditAvatar.close();
         })
         .catch((err) => {
-          console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+          console.log(`Ошибка при обновлении аватара: ${err}`); // выведем ошибку в консоль
         })
         .finally(() => {
           // вызов renderLoading
