@@ -38,14 +38,20 @@ function createCard(cardData) {
                 .then(res => {
                   card.handleDelete();
                   deletePopup.close();
-                });
+                })
+                .catch((err) => {
+                  console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+                })
             });
           },
           handleLikeClick: (id) => {
             api.toggleLike(id, card.isLiked())
               .then(res => {
                   card.setLikes(res.likes);
-              });
+              })
+              .catch((err) => {
+                console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+              })
           }
       },
       '.card-template',
@@ -72,7 +78,7 @@ function renderLoading(isLoading) {
 }
 
 export const popupWithImage = new PopupWithImage('.popup_image_big');
-const section = new Section({ items: []/* initialCards */, renderer: renderCard }, '.cards')
+const section = new Section({ /* items: [] initialCards */ renderer: renderCard }, '.cards')
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
 const formCardValidator = new FormValidator (validationConfig, popupAddCard);
 const formAvatarValidator = new FormValidator (validationConfig, popupEditAvatar);
@@ -163,7 +169,10 @@ api.getProfile()
     userInfo.setUserInfo(res.name, res.about);
     userInfo.setUserAvatar(res.avatar);
     userId = res._id;
-  });
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+  })
 api.getInitialCards()
   .then(cardList => {
     cardList.forEach(data => {
@@ -177,7 +186,10 @@ api.getInitialCards()
       });
       section.addItem(card);
     });
-  });
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+  })
 // Вызоваем функции
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
@@ -187,7 +199,7 @@ formPopupAddCard.setEventListeners();
 formPopupEditProfile.setEventListeners();
 formPopupEditAvatar.setEventListeners();
 deletePopup.setEventListeners();
-section.renderInitialItems();
+// section.renderInitialItems(initialCards);
 
 // Вешаем обработчики
 popupEditProfileOpen.addEventListener('click', () => {
