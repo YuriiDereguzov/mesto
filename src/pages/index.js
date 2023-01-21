@@ -67,16 +67,6 @@ function renderCard(cardData) {
   section.addItem(cardElement);
 }
 
-function renderLoading(isLoading) {
-  const openedPopup = document.querySelector('.popup_opened'); // нашли открытый попап
-  const butonSave = openedPopup.querySelector('.popup__button-save');
-  if(isLoading) {
-    butonSave.textContent = "Сохранение..."
-  } else {
-    butonSave.textContent = "Сохранить"
-  }
-}
-
 export const popupWithImage = new PopupWithImage('.popup_image_big');
 const section = new Section({ /* items: [] initialCards */ renderer: renderCard }, '.cards')
 const formProfileValidator = new FormValidator (validationConfig, popupEditProfile);
@@ -87,20 +77,19 @@ const formPopupEditProfile = new PopupWithForm(
   '.popup_edit-profile',
   {
     handleFormSubmit: (items) => {
-      renderLoading(true);
+      formProfileValidator.renderLoading(true);
       api.editProfile(items.name, items.job)
         .then(res => {
           userInfo.setUserInfo(items.name, items.job);
-          renderLoading(false);
           formPopupEditProfile.close();
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
-        // .finally(() => {
-        //   // вызов renderLoading
-        //   renderLoading(false);
-        // })
+        .finally(() => {
+          // вызов renderLoading
+          formProfileValidator.renderLoading(false);
+        })
     }
   }
 ); 
@@ -108,7 +97,7 @@ const formPopupAddCard = new PopupWithForm(
   '.popup_add_card',
   {
     handleFormSubmit: (items) => {
-      renderLoading(true);
+      formCardValidator.renderLoading(true);
       api.addCard(items.name, items.link)
         .then(res => {
           const card = createCard({
@@ -120,16 +109,15 @@ const formPopupAddCard = new PopupWithForm(
             ownerId: res.owner._id
           });
           section.addItem(card);
-          renderLoading(false);
           formPopupAddCard.close();
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
-        // .finally(() => {
-        //   // вызов renderLoading
-        //   renderLoading(false);
-        // })
+        .finally(() => {
+          // вызов renderLoading
+          formCardValidator.renderLoading(false);
+        })
     }
   }
 ); 
@@ -143,22 +131,21 @@ const formPopupEditAvatar = new PopupWithForm(
   '.popup_edit_avatar',
   {
     handleFormSubmit: (items) => {
-      renderLoading(true);
+      formAvatarValidator.renderLoading(true);
       // console.log(items)
       api.editAvatar(items.link)
         .then(res => {
           // console.log('ответ', res)
           userInfo.setUserAvatar(items.link);
-          renderLoading(false);
           formPopupEditAvatar.close();
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
         })
-        // .finally(() => {
-        //   // вызов renderLoading
-        //   renderLoading(false);
-        // })
+        .finally(() => {
+          // вызов renderLoading
+          formAvatarValidator.renderLoading(false);
+        })
     }
   }
 ); 
