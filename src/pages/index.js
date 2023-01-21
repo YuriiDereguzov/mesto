@@ -150,18 +150,12 @@ const formPopupEditAvatar = new PopupWithForm(
   }
 ); 
 
-api.getProfile()
-  .then(res => {
-    // console.log('ответ', res)
-    userInfo.setUserInfo(res.name, res.about);
-    userInfo.setUserAvatar(res.avatar);
-    userId = res._id;
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
-  })
-api.getInitialCards()
-  .then(cardList => {
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([userData, cardList]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+    userId = userData._id;
+
     cardList.forEach(data => {
       const card = createCard({
         name: data.name,
@@ -177,6 +171,34 @@ api.getInitialCards()
   .catch((err) => {
     console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
   })
+
+// api.getProfile()
+//   .then(res => {
+//     // console.log('ответ', res)
+//     userInfo.setUserInfo(res.name, res.about);
+//     userInfo.setUserAvatar(res.avatar);
+//     userId = res._id;
+//   })
+//   .catch((err) => {
+//     console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+//   })
+// api.getInitialCards()
+//   .then(cardList => {
+//     cardList.forEach(data => {
+//       const card = createCard({
+//         name: data.name,
+//         link: data.link,
+//         likes: data.likes,
+//         id: data._id,
+//         userId: userId,
+//         ownerId: data.owner._id
+//       });
+//       section.addItem(card);
+//     });
+//   })
+//   .catch((err) => {
+//     console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
+//   })
 // Вызоваем функции
 formProfileValidator.enableValidation();
 formCardValidator.enableValidation();
