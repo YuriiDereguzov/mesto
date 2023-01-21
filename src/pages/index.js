@@ -77,7 +77,7 @@ const formPopupEditProfile = new PopupWithForm(
   '.popup_edit-profile',
   {
     handleFormSubmit: (items) => {
-      formProfileValidator.renderLoading(true);
+      formPopupEditProfile.renderLoading(true);
       api.editProfile(items.name, items.job)
         .then(res => {
           userInfo.setUserInfo(items.name, items.job);
@@ -88,7 +88,7 @@ const formPopupEditProfile = new PopupWithForm(
         })
         .finally(() => {
           // вызов renderLoading
-          formProfileValidator.renderLoading(false);
+          formPopupEditProfile.renderLoading(false);
         })
     }
   }
@@ -97,7 +97,7 @@ const formPopupAddCard = new PopupWithForm(
   '.popup_add_card',
   {
     handleFormSubmit: (items) => {
-      formCardValidator.renderLoading(true);
+      formPopupAddCard.renderLoading(true);
       api.addCard(items.name, items.link)
         .then(res => {
           const card = createCard({
@@ -116,7 +116,7 @@ const formPopupAddCard = new PopupWithForm(
         })
         .finally(() => {
           // вызов renderLoading
-          formCardValidator.renderLoading(false);
+          formPopupAddCard.renderLoading(false);
         })
     }
   }
@@ -131,7 +131,7 @@ const formPopupEditAvatar = new PopupWithForm(
   '.popup_edit_avatar',
   {
     handleFormSubmit: (items) => {
-      formAvatarValidator.renderLoading(true);
+      formPopupEditAvatar.renderLoading(true);
       // console.log(items)
       api.editAvatar(items.link)
         .then(res => {
@@ -144,7 +144,7 @@ const formPopupEditAvatar = new PopupWithForm(
         })
         .finally(() => {
           // вызов renderLoading
-          formAvatarValidator.renderLoading(false);
+          formPopupEditAvatar.renderLoading(false);
         })
     }
   }

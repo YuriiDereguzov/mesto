@@ -11,14 +11,6 @@ export default class FormValidator {
         this._inputList = Array.from(this._form.querySelectorAll(setting.inputSelector));
     }
 
-    renderLoading(isLoading) {
-        if(isLoading) {
-            this._buttonElement.textContent = "Сохранение..."
-        } else {
-            this._buttonElement.textContent = "Сохранить"
-        }
-    }
-
     // метод, который будет снимать ошибки валидации
     resetValidation () {
         // Переберём полученные коллекции
