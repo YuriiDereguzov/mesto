@@ -154,7 +154,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     userInfo.setUserAvatar(userData.avatar);
     userId = userData._id;
 
-    section.renderInitialItems(cardList);
+    section.renderInitialItems(cardList.reverse());
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`); // выведем ошибку в консоль
